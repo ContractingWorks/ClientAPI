@@ -18,9 +18,12 @@ Where the settings express default values from a system table, the setting will 
 
 ### Employees
 
-### Suppliers
 
 ### Products and prices
+An integral part of handling products and prices in Contracting.Works is **industry types**. Product names, regulations, price agreements and other similar data is strongly connection to this industry type.
+
+In Contracting.Works, a supplier will serve one or more industry types. Thus, most product and price information is connected to the supplier in context of an industry type, named ***SupplierIndustryType***.
+
 
 ### Hours
 
@@ -39,46 +42,46 @@ In practice, an the address of an assignment does not make sense alone - it is c
 The following aggregates roots are defined in Contracting.Works:
 
 * Assignment                            
-  -> Default_Contact						
-  -> Address							
-  -> AssignmentProductAgreement		
-  -> AssignmentParticipant
+  * Default_Contact						
+  * Address							
+  * AssignmentProductAgreement		
+  * AssignmentParticipant
 									
 * Customer						 
-  -> Default_Address					
-  -> Invoice_Address					 
-  -> Default_Contact					 
-  -> CustomerProductAgreement			
+  * Default_Address					
+  * Invoice_Address					 
+  * Default_Contact					 
+  * CustomerProductAgreement			
 									
 * Employee						 
-  -> Default_Address					
-  -> Employee_Competency				
+  * Default_Address					
+  * Employee_Competency				
 
 * Invoice
-  -> InvoiceDetail
+  * InvoiceDetail
 
 * ProductAgreement
-  -> ProductAgreementDetail			
+  * ProductAgreementDetail			
 									
 * PurchaseAgreement				 
-  -> PurchaseAgreementDiscountGroup	
-  -> PurchaseAgreementDiscountProduct	
+  * PurchaseAgreementDiscountGroup	
+  * PurchaseAgreementDiscountProduct	
 
 * ServiceAgreement		 
-  -> ServiceAgreementDetail			
+  * ServiceAgreementDetail			
 									
 * Storage			 
-  -> Stock								
-  -> StockTransaction		
+  * Stock								
+  * StockTransaction		
  
 * Product 
-  -> ProductExtendedInfo
+  * ProductExtendedInfo
   
  * ProductNote
-  -> ProductNoteDetail
+  * ProductNoteDetail
 
 * SupplierIndustryType
-  -> Default_PurchaseAgreement
+  * Default_PurchaseAgreement
 
 * AssignmentCategory						 
 * Country									 
