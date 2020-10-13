@@ -1,9 +1,6 @@
 # Reference guide
 
 
-
-[TOC]
-
 ## Getting started
 
 If you haven't integrated with Contracting.Works before, read the [Getting started guide](Getting%20started.md) in the documentation. You may also want to read our [REST API overview](ClientApi.md), which describes how the Contracting.Works REST APIs work, including a simple example of a REST call.

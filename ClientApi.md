@@ -6,11 +6,6 @@ This file is currently NOT representative for the REST API, and contains mainly 
 
 # REST API principles and examples
 
-[TOC]
-
-
-
-
 
 ## Basic principles 
 

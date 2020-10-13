@@ -1,7 +1,5 @@
 # GraphQL API principles and examples 
 
-[TOC]
-
 ## Overview
 
 The Contracting.Works Client API is based on CQRS (Command Query Resource Segregation), where read operations are powered by a GraphQL API. GraphQL is a structured query language allowing the client fine control over how much or how little data a request returns. The data model is treated as a graph (thus the name GraphQL), where entities can be queried and relations within the entity graph can be traversed easily.
