@@ -73,6 +73,8 @@ query {
   }
 }
 ```
+[Try it in GraphQL Playground](https://contracting-test-clientapi-graphql.azurewebsites.net/graphql/playground/?query=query%20%7B%0A%20%20customers%20%7B%0A%20%20%20%20items%20%7B%0A%20%20%20%20%20%20name%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A)
+
 
 Note that all words are **case sensitive** here, including entity and property names. For sets of entities, the "items" node is mandatory. Any root query in Contracting Works is a set of items - even if only a single item is returned.
 
