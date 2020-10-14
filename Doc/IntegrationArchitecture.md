@@ -1,5 +1,8 @@
 # Integration services
 
+![](Images/IntegrationArchitecture.png)
+
+
 ## Components
 
 Below follows a basic overview of the components used for and by the integration service.
