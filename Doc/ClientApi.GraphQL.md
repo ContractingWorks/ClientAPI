@@ -29,7 +29,7 @@ Using Playground straight forward (just try it!). The query editor supports code
 - Under HTTP HEADERS at the bottom of the screen, the following must be specified: {"Authorization":"Bearer _[bearer token value]_"} (see [Getting a valid bearer token](#getting-a-valid-bearer-token) for getting a valid token)
 
 ### GraphQL Voyager
-[GraphQL Voyager](https://contracting-test-clientapi-graphql.azurewebsites.net/graphql/voyager/) is a tool for visualizing GraphQL medatada - the Contracting Works data model is available here. Note that this is a large model, so the visualization performance may be slow.
+[GraphQL Voyager](https://contracting-test-clientapi-graphql.azurewebsites.net/graphql/voyager/) is a tool for visualizing GraphQL medatada - the Contracting.Works data model is available here. Note that this is a large model, so the visualization performance may be slow.
 
 ### Swagger API
 While the GraphqQl API is not REST based, all Contracting.Works services also contain a Swagger API. This is useful for e.g. checking permissions and service health - and for for getting a valid bearer token for interactive testing purposes (see [Getting a valid bearer token](#getting-a-valid-bearer-token)).
@@ -42,10 +42,10 @@ A valid bearer token can fetched by accessing the site's [Swagger UI](https://co
 
 Click "Try it out" on a command which require authenticated access, for example AuthInfo. You do not need to provide a valid clientId here - you are not interested in the response, but rather the Curl-query itself. This will contain a valid bearer token value. 
 
-Copy the token text (after "Bearer " and until the closing qote).
+Copy the token text (after "Bearer " and until the closing quote).
 
 ## The GraphQL language
-Contracting Works uses a custom GraphQL implementation, focusing on query performance and ease of use. Compared to some other implementations, only a subset of the operations are supported, and some useful extensions are added. Most notably:
+Contracting.Works uses a custom GraphQL implementation, focusing on query performance and ease of use. Compared to some other implementations, only a subset of the operations are supported, and some useful extensions are added. Most notably:
 
 - Mutations are not supported (use the [ClientApi REST API](ClientApi.md) for this).
 - Subscriptions are not supported (use the [SignalR API](SignalR.md) for this).
@@ -62,7 +62,7 @@ Also note that we are utilizing [HotChocolates GraphQL query parser](https://chi
 
 ### Query structure
 
-Queries have the follwing structure:
+Queries have the following structure:
 
 ```javascript
 query {
@@ -76,7 +76,7 @@ query {
 [Try it in GraphQL Playground](https://contracting-test-clientapi-graphql.azurewebsites.net/graphql/playground/?query=query%20%7B%0A%20%20customers%20%7B%0A%20%20%20%20items%20%7B%0A%20%20%20%20%20%20name%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A)
 
 
-Note that all words are **case sensitive** here, including entity and property names. For sets of entities, the "items" node is mandatory. Any root query in Contracting Works is a set of items - even if only a single item is returned.
+Note that all words are **case sensitive** here, including entity and property names. For sets of entities, the "items" node is mandatory. Any root query in Contracting.Works is a set of items - even if only a single item is returned.
 
 In order to drill down further in the data set following relations, query the relation as part of the root entity as follows:
 
@@ -125,7 +125,7 @@ query {
 }
 ```
 
-Please be aware that getting the total count has a (small) cost on the underlying database query, and should be avoided if not needed for performance reasons (for example if you get all records without pagination).
+Please be aware that getting the total count has a (small) cost on the underlying database query, and should be avoided if not needed for performance reasons (for example, if you get all records without pagination).
 
 Queries may take variables as input. This is a useful technique for improving readability and reusability of queries. A parametrized query looks like this, using $filter0 and $take0 as variables. Note that the query must specify the types of the input variables.
 To use the variables, reference them with the full name including the leading dollar sign (which is mandatory).
@@ -140,7 +140,7 @@ query($filter0: String, $take0: int) {
 }
 ```
 
-To set the parameter values on a query in GraphQl Playground, a json structure must be used under "Query variables" at the bottom of the screen:
+To set the parameter values on a query in GraphQL Playground, a json structure must be used under "Query variables" at the bottom of the screen:
 
 ```javascript
 {"take0": 10, "filter0":"customerId!='D2AFDDC5-88A0-5C0C-AF24-001220D51881'"}
@@ -278,27 +278,27 @@ query {
 ```
 
 More complex comparisons and normal boolean logic can be used for filters. Normal operator precedence is used for NOT(!), AND(&), OR(|) and handling of parenthesis. Thus a filter expression of the form "a=1|a=2&b=3" is functionally equivalent to the expression  "a=1|(a=2&b=3)".
-The boolean operators and the equality operator also support C-style ==, && and ||, though they behave identically to their single-character equivalent. Spaces are also allowed. The previous example may therefore be written "a == 1 || (a == 2 && b == 3)" for readability.
+Boolean operators and the equality operator also support C-style ==, && and ||, though they behave identically to their single-character equivalent. Spaces are also allowed. The previous example may therefore be written "a == 1 || (a == 2 && b == 3)" for readability.
 Any level of nesting is supported for parenthesis.
 
-Boolean values alwasys originate with a comparison expression between a [path](#paths) and a value, in that order. The value cannot currently be fetched from a [path](#paths). 
+Boolean values always originate with a comparison expression between a [path](#paths) and a value, in that order. The value cannot currently be fetched from a [path](#paths). 
 
 The following comparison expressions are supported:
-| Comparison        | Short form | Comment                                                                                               |  
-|-------------------|------------|-------------------------------------------------------------------------------------------------------|
-| Equal             | =, ==      |                                                                                                       |
-| NotEqual          | !=         |                                                                                                       |
-| GreaterThan       | >          |                                                                                                       |
-| GreaterThanOrEqual| >=         |                                                                                                       |
-| LessThan          | <          |                                                                                                       |
-| LessThanOrEqual   | <=         |                                                                                                       |
-| Like              |            |                                                                                                       |
-| Contains          |            | Equivalent to Like                                                                                    |
-| NotContains       |            | Equivalent to !Contains ...                                                                           |
-| StartsWith        |            |                                                                                                       |
-| EndsWith          |            |                                                                                                       |
-| In                |            | Operates on a set of values separated by comma and surrounded by square brackets, for example [1,2,3] |
-| NotIn             |            | Equvalent to !In ...                                                                                  |
+| Comparison         | Short form | Comment                                                      |
+| ------------------ | ---------- | ------------------------------------------------------------ |
+| Equal              | =, ==      |                                                              |
+| NotEqual           | !=         |                                                              |
+| GreaterThan        | >          |                                                              |
+| GreaterThanOrEqual | >=         |                                                              |
+| LessThan           | <          |                                                              |
+| LessThanOrEqual    | <=         |                                                              |
+| Like               |            |                                                              |
+| Contains           |            | Equivalent to Like                                           |
+| NotContains        |            | Equivalent to !Contains ...                                  |
+| StartsWith         |            |                                                              |
+| EndsWith           |            |                                                              |
+| In                 |            | Operates on a set of values separated by comma and surrounded by square brackets, for example [1,2,3] |
+| NotIn              |            | Equivalent to !In ...                                        |
 
 
 Based on field types, some comparison operations may not be supported, such as Contains on a DateTime.
@@ -318,7 +318,7 @@ Null values are handled "C#-style" for fields which are nullable, that is a null
 
 When fetching multiple small datasets, this can be efficiently achieved with a single request simply by adding multiple top-level nodes within the same query.
 
-**Note: consider using a local cache for stable data rather than reading them from the GrahpQL API multiple times.** It is not often the list of countries change, after all.
+**Note: consider using a local cache for stable data rather than reading them from the GraphQL API multiple times.** It is not often the list of countries change, after all.
 
 ```javascript
 query {
@@ -374,7 +374,7 @@ HTTP headers:    {"Authorization" :"Bearer XXX"}
 
 The HTTPS GET method requires that the query is included in the URL string as a parameter. You can also send any required variables in an additional "variables" parameter in JSON format.
 
-```
+```json
 curl "https://contracting-test-clientapi-graphql.azurewebsites.net/client/XXX/graphql" ^
   -H "Connection: keep-alive" ^
   -H "accept: */*" ^
@@ -408,7 +408,7 @@ The demo endpoint is unauthenticated, and although we’ve imposed read-only acc
 
 A simple example, which demonstrates how you can query our GraphQL demo endpoint direct from the command line:
 
-```
+```json
 curl "https://contracting-test-clientapi-graphql.azurewebsites.net/client/d4a668d1-d5fa-4aff-91f2-a9615281efa7/graphql" ^
   -H "Connection: keep-alive" ^
   -H "accept: */*" ^
@@ -426,7 +426,7 @@ curl "https://contracting-test-clientapi-graphql.azurewebsites.net/client/d4a668
 ```
 
 ### Using PowerShell
-```
+```powershell
 Invoke-WebRequest -Uri "https://contracting-test-clientapi-graphql.azurewebsites.net/client/d4a668d1-d5fa-4aff-91f2-a9615281efa7/graphql" `
 -Method "POST" `
 -Headers @{
@@ -449,7 +449,7 @@ Invoke-WebRequest -Uri "https://contracting-test-clientapi-graphql.azurewebsites
 
 Our development language of choice; a typed superset of JavaScript that compiles to plain JavaScript. Here’s an example of how you can use it to query our GraphQL demo endpoint:
 
-```
+```typescript
          ---nee to be updated
      function callTestEndpoint():void {
         var request = new XMLHttpRequest();
@@ -475,7 +475,7 @@ Our development language of choice; a typed superset of JavaScript that compiles
 
 A slight difference to our TypeScript example (see above), but we did it anyway.
 
-```
+```javascript
         ---nee to be updated
     function callTestEndpoint() {
         var request = new XMLHttpRequest();
@@ -503,4 +503,4 @@ A slight difference to our TypeScript example (see above), but we did it anyway.
 
 ## Error types and handling
 
-The list can be found in Reference.md description
+The list can be found in [Reference.md](https://github.com/ContractingWorks/ClientAPI/blob/main/Doc/Reference.md) description
