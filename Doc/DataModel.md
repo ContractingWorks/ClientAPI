@@ -3,7 +3,7 @@
 Both the [GraphQL API](ClientApi.GraphQL.md) and [REST API](ClientApi.md) express aspects of the same data model, the difference being that
 the [REST API](ClientApi.md) only allows writing data according to Contracting.Works' [aggregate definitions](#aggregate-definitions).
 
-The complete read model is avaiable through GraphQL metadata. See [GraphQL Voyager](https://contracting-test-clientapi-graphql.azurewebsites.net/graphql/voyager/) for a visual representation of the model.
+The complete read model is available through GraphQL metadata. See [GraphQL Voyager](https://contracting-test-clientapi-graphql.azurewebsites.net/graphql/voyager/) for a visual representation of the model.
 
 
 ## Main entities
@@ -37,7 +37,7 @@ In Contracting.Works, a supplier will serve one or more industry types. Thus, mo
 ## Aggregate definitions
 Aggregates are a concept from Domain Driven Design, as described [here](https://www.martinfowler.com/bliki/DDD_Aggregate.html). For performance reasons, DDD is not used fully in Contracting.Works, but we do use many of the same terms and abstractions for clarity.
 
-In practice, an the address of an assignment does not make sense alone - it is conseptually a part of the assignment and edited togeter with the assignment. For most kinds of data, Contracting.Works allow manipulation of the datasets independently to allow for a flexible user experience.
+In practice, an the address of an assignment does not make sense alone - it is conceptually a part of the assignment and edited together with the assignment. For most kinds of data, Contracting.Works allow manipulation of the datasets independently to allow for a flexible user experience.
 
 The following aggregates roots are defined in Contracting.Works:
 
@@ -46,13 +46,13 @@ The following aggregates roots are defined in Contracting.Works:
   * Address							
   * AssignmentProductAgreement		
   * AssignmentParticipant
-									
+	
 * Customer						 
   * Default_Address					
   * Invoice_Address					 
   * Default_Contact					 
   * CustomerProductAgreement			
-									
+	
 * Employee						 
   * Default_Address					
   * Employee_Competency				
@@ -62,18 +62,18 @@ The following aggregates roots are defined in Contracting.Works:
 
 * ProductAgreement
   * ProductAgreementDetail			
-									
+	
 * PurchaseAgreement				 
   * PurchaseAgreementDiscountGroup	
   * PurchaseAgreementDiscountProduct	
 
 * ServiceAgreement		 
   * ServiceAgreementDetail			
-									
+	
 * Storage			 
   * Stock								
   * StockTransaction		
- 
+
 * Product 
   * ProductExtendedInfo
   
