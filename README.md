@@ -12,15 +12,15 @@ The APIs can be tested on dummy data using standardized credentials using GraphQ
 
 ## Getting started
 
-To get started quickly with integrations, we have created a simple guide [located here](Getting%20started.md).
+To get started quickly with integrations, we have created a [simple getting started guide](Getting%20started.md).
 
 ## Documentation
 
-Documentation is located in the Doc subfolder. A good starting points is [the documentation readme](Doc/README.md).
+Documentation is located in the [Doc subfolder](Doc).
 
 ## Example code
 
-Runnable example code in .Net reading and writing data to our demo client is located in the [Examples](Examples/README.md) subfolder in this repo.
+Runnable example code in .Net reading and writing data to our demo client is located in the [Examples](Examples) subfolder in this repo.
 
 
 
