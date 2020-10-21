@@ -5,10 +5,7 @@ On authentication / authorization to the Contracting.Works API to get data and a
 - Devinco.Connect service
 - SSO service capabilities
 
-
-
-![](Images\M2mAuthFlow.png)
-
+![](Images/M2mAuthFlow.png)
 
 
 ## Devinco connect
