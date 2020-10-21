@@ -7,6 +7,10 @@ On authentication / authorization to the Contracting.Works API to get data and a
 
 
 
+![](Images\M2mAuthFlow.PNG)
+
+
+
 ## Devinco connect
 
 ### Token
