@@ -39,74 +39,115 @@ Aggregates are a concept from Domain Driven Design, as described [here](https://
 
 In practice, an the address of an assignment does not make sense alone - it is conceptually a part of the assignment and edited together with the assignment. For most kinds of data, Contracting.Works allow manipulation of the datasets independently to allow for a flexible user experience.
 
-The following aggregates roots are defined in Contracting.Works:
+The following aggregates are defined in Contracting.Works, where a bullet indicates the aggregate is an aggregate root, while arrows indicate aggregate parts. Certain aggregates are not roots, but are available through their parent roots. An example of this is an **address**, which is part of both the assignment and customer aggregates. Rether than defining the address elements twice, a single definision is reused.
+
+
+Address
+  -> ExternalSystemAddress
 
 * Assignment                            
-  * Default_Contact						
-  * Address							
-  * AssignmentProductAgreement		
-  * AssignmentParticipant
-	
+  -> Default_Contact						
+  -> Address							
+  -> AssignmentProductAgreement		
+  -> AssignmentParticipant
+  -> AssignmentDimension
+  -> DimensionValueUse
+  -> ExternalSystemAssignment
+		
+Contact
+  -> ExternalSystemContact
+
 * Customer						 
-  * Default_Address					
-  * Invoice_Address					 
-  * Default_Contact					 
-  * CustomerProductAgreement			
-	
+  -> Default_Address					
+  -> Invoice_Address					 
+  -> Default_Contact					 
+  -> CustomerProductAgreement
+  -> ExternalSystemCustomer
+
+* Department
+  -> ExternalSystemDepartment
+									
+* Dimension
+	-> DimensionValue
+
 * Employee						 
-  * Default_Address					
-  * Employee_Competency				
+  -> Default_Address					
+  -> Employee_Competency
+  -> ExternalSystemEmployee
 
 * Invoice
-  * InvoiceDetail
+  -> InvoiceDetail
 
-* ProductAgreement
-  * ProductAgreementDetail			
-	
-* PurchaseAgreement				 
-  * PurchaseAgreementDiscountGroup	
-  * PurchaseAgreementDiscountProduct	
+* LedgerAccount
+  -> ExternalSystemLedgerAccount
 
-* ServiceAgreement		 
-  * ServiceAgreementDetail			
-	
-* Storage			 
-  * Stock								
-  * StockTransaction		
+* PaymentTerm
+  -> ExternalSystemPaymentTerm
 
 * Product 
-  * ProductExtendedInfo
-  
- * ProductNote
-  * ProductNoteDetail
+  -> ProductExtendedInfo
+  -> ExternalSystemProduct
+
+* ProductAgreement
+  -> ProductAgreementDetail			
+									
+* Project
+	-> ProjectDimension
+	-> DimensionValueUse
+	-> ExternalSystemProject
+									
+* PurchaseAgreement				 
+  -> PurchaseAgreementDiscountGroup	
+  -> PurchaseAgreementDiscountProduct	
+
+* Service
+	-> ServiceDimensionValue
+
+* ServiceAgreement
+  -> ServiceAgreementDetail			
+									
+* Storage			 
+  -> Stock								
+  -> StockTransaction		
+ 
+* Supplier
+  -> ExternalSystemSupplier
+
+* ProductNote
+  -> ProductNoteDetail
+
+ProductNoteDetail
+  -> ProductNoteDetailDimensionValue
+
+* ProjectAccountReportCategory
+  -> ProjectAccountReportCategoryDetail
 
 * SupplierIndustryType
-  * Default_PurchaseAgreement
+  -> Default_PurchaseAgreement
+
+* VATRate
+  -> ExternalSystemVATRate
+
+* WageCode
+  -> ExternalSystemWageCode
 
 * AssignmentCategory						 
 * Country									 
-* Department	
-* Dimension
 * DiscountGroup
 * EmployeeInvoiceCategory
+* ExternalSystem
 * ImportFile
 * IntegratedSystemConfig
 * IndustryType							 
 * JobCategory								 
-* LedgerAccount	
-* PaymentTerm
 * ProductSupplierIndustryType				 
-* Project									 
-* ProjectAccount							 
-* Service									 
+* ProjectAccount
+* ProjectAccountCategory
 * Settings_Assignment						 
 * Settings_Main							 
-* Supplier								 
 * SupplierIndustryTypeFtpInfo
 * SupplierInvoice		
-* VATRate
-* WageCode								 
 * WageGroup								 
 * WagePeriod								 
 * WageRate								 
-* WageRateEmployee	
+* WageRateEmployee						 
