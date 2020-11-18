@@ -375,17 +375,17 @@ HTTP headers:    {"Authorization" :"Bearer XXX"}
 The HTTPS GET method requires that the query is included in the URL string as a parameter. You can also send any required variables in an additional "variables" parameter in JSON format.
 
 ```json
-curl "https://contracting-test-clientapi-graphql.azurewebsites.net/client/XXX/graphql" ^
+curl "https://contracting-extest-clientapi-graphql.azurewebsites.net/client/XXX/graphql" ^
   -H "Connection: keep-alive" ^
   -H "accept: */*" ^
   -H "Authorization: Bearer XXX" ^
   -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36" ^
   -H "content-type: application/json" ^
-  -H "Origin: https://contracting-test-clientapi-graphql.azurewebsites.net" ^
+  -H "Origin: https://contracting-extest-clientapi-graphql.azurewebsites.net" ^
   -H "Sec-Fetch-Site: same-origin" ^
   -H "Sec-Fetch-Mode: cors" ^
   -H "Sec-Fetch-Dest: empty" ^
-  -H "Referer: https://contracting-test-clientapi-graphql.azurewebsites.net/graphql/playground/" ^
+  -H "Referer: https://contracting-extest-clientapi-graphql.azurewebsites.net/graphql/playground/" ^
   -H "Accept-Language: nb-NO,nb;q=0.9,no;q=0.8,nn;q=0.7,en-US;q=0.6,en;q=0.5" ^
   --data-binary "^{^\^"operationName^\^":null,^\^"variables^\^":^{^\^"filter0^\^":^\^"sys_Deactivated = false^\^"^},^\^"query^\^":^\^"query (^$filter0: String) ^{^\^\n  employees(filter: ^$filter0) ^{^\^\n    items ^{^\^\n      employeeId^\^\n      lastName^\^\n      firstName^\^\n      dateOfBirth^\^\n    ^}^\^\n  ^}^\^\n^}^\^\n^\^"^}" ^
   --compressed
@@ -409,17 +409,17 @@ The demo endpoint is unauthenticated, and although we’ve imposed read-only acc
 A simple example, which demonstrates how you can query our GraphQL demo endpoint direct from the command line:
 
 ```json
-curl "https://contracting-test-clientapi-graphql.azurewebsites.net/client/d4a668d1-d5fa-4aff-91f2-a9615281efa7/graphql" ^
+curl "https://contracting-extest-clientapi-graphql.azurewebsites.net/client/d4a668d1-d5fa-4aff-91f2-a9615281efa7/graphql" ^
   -H "Connection: keep-alive" ^
   -H "accept: */*" ^
   -H "Authorization: Bearer XXX" ^
   -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36" ^
   -H "content-type: application/json" ^
-  -H "Origin: https://contracting-test-clientapi-graphql.azurewebsites.net" ^
+  -H "Origin: https://contracting-extest-clientapi-graphql.azurewebsites.net" ^
   -H "Sec-Fetch-Site: same-origin" ^
   -H "Sec-Fetch-Mode: cors" ^
   -H "Sec-Fetch-Dest: empty" ^
-  -H "Referer: https://contracting-test-clientapi-graphql.azurewebsites.net/graphql/playground/" ^
+  -H "Referer: https://contracting-extest-clientapi-graphql.azurewebsites.net/graphql/playground/" ^
   -H "Accept-Language: nb-NO,nb;q=0.9,no;q=0.8,nn;q=0.7,en-US;q=0.6,en;q=0.5" ^
   --data-binary "^{^\^"operationName^\^":null,^\^"variables^\^":^{^\^"filter0^\^":^\^"sys_Deactivated = false^\^"^},^\^"query^\^":^\^"query (^$filter0: String) ^{^\^\n  employees(filter: ^$filter0) ^{^\^\n    items ^{^\^\n      employeeId^\^\n      lastName^\^\n      firstName^\^\n      dateOfBirth^\^\n    ^}^\^\n  ^}^\^\n^}^\^\n^\^"^}" ^
   --compressed
@@ -427,17 +427,17 @@ curl "https://contracting-test-clientapi-graphql.azurewebsites.net/client/d4a668
 
 ### Using PowerShell
 ```powershell
-Invoke-WebRequest -Uri "https://contracting-test-clientapi-graphql.azurewebsites.net/client/d4a668d1-d5fa-4aff-91f2-a9615281efa7/graphql" `
+Invoke-WebRequest -Uri "https://contracting-extest-clientapi-graphql.azurewebsites.net/client/d4a668d1-d5fa-4aff-91f2-a9615281efa7/graphql" `
 -Method "POST" `
 -Headers @{
 "accept"="*/*"
   "Authorization"="Bearer XXX"
   "User-Agent"="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36"
-  "Origin"="https://contracting-test-clientapi-graphql.azurewebsites.net"
+  "Origin"="https://contracting-extest-clientapi-graphql.azurewebsites.net"
   "Sec-Fetch-Site"="same-origin"
   "Sec-Fetch-Mode"="cors"
   "Sec-Fetch-Dest"="empty"
-  "Referer"="https://contracting-test-clientapi-graphql.azurewebsites.net/graphql/playground/"
+  "Referer"="https://contracting-extest-clientapi-graphql.azurewebsites.net/graphql/playground/"
   "Accept-Encoding"="gzip, deflate, br"
   "Accept-Language"="nb-NO,nb;q=0.9,no;q=0.8,nn;q=0.7,en-US;q=0.6,en;q=0.5"
 } `
@@ -454,7 +454,7 @@ Our development language of choice; a typed superset of JavaScript that compiles
      function callTestEndpoint():void {
         var request = new XMLHttpRequest();
 
-        request.open('POST', "https://contracting-test-clientapi-graphql.azurewebsites.net/client/d4a668d1-d5fa-4aff-91f2-a9615281efa7/graphql", true);
+        request.open('POST', "https://contracting-extest-clientapi-graphql.azurewebsites.net/client/d4a668d1-d5fa-4aff-91f2-a9615281efa7/graphql", true);
         var data = {"query":"{sage {emSales { salesOrder (first: 5, orderBy: \"{ id: 1 }\") {  edges { node { id, soldToCustomer {companyName } } } } } } }","variable":""};
 
         request.setRequestHeader("content-type", "application/json");
@@ -480,7 +480,7 @@ A slight difference to our TypeScript example (see above), but we did it anyway.
     function callTestEndpoint() {
         var request = new XMLHttpRequest();
 
-        request.open('POST', "https://contracting-test-clientapi-graphql.azurewebsites.net/client/d4a668d1-d5fa-4aff-91f2-a9615281efa7/graphql", true);
+        request.open('POST', "https://contracting-extest-clientapi-graphql.azurewebsites.net/client/d4a668d1-d5fa-4aff-91f2-a9615281efa7/graphql", true);
         var data = {"query":"{sage {emSales { salesOrder (first: 5, orderBy: \"{ id: 1 }\") {  edges { node { id, soldToCustomer {companyName } } } } } } }","variable":""};
 
         request.setRequestHeader("content-type", "application/json");

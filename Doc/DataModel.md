@@ -3,7 +3,7 @@
 Both the [GraphQL API](ClientApi.GraphQL.md) and [REST API](ClientApi.md) express aspects of the same data model, the difference being that
 the [REST API](ClientApi.md) only allows writing data according to Contracting.Works' [aggregate definitions](#aggregate-definitions).
 
-The complete read model is available through GraphQL metadata. See [GraphQL Voyager](https://contracting-test-clientapi-graphql.azurewebsites.net/graphql/voyager/) for a visual representation of the model.
+The complete read model is available through GraphQL metadata. See [GraphQL Voyager](https://contracting-extest-clientapi-graphql.azurewebsites.net/graphql/voyager/) for a visual representation of the model.
 
 ## Database principles and conventions
 

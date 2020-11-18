@@ -43,7 +43,6 @@ All time information is stored in UTC (Coordinated Universal Time) internally in
 
 When fetching data through GraphQL, the API will return the following formats:
 
-|----------|---------------------------|--------------------------|------------------------------------------------------------------|
 | Type     | Format                    | Example                  | Comment                                                          |           
 |----------|---------------------------|--------------------------|------------------------------------------------------------------|
 | DateTime | yyyy-MM-ddTHH:mm:ss.fffZ  | 2020-11-18T10:34:10.123Z | Fractions are optional, and will only be provided where relevant |

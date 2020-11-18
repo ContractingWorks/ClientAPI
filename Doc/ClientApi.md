@@ -9,14 +9,14 @@ Note that while the API uses REST style abstractions, it is *not* RESTful - that
 ## Basic principles 
 
 All methods provided by the API follow the same principles, described here. In brief:
-  - As part of the method URL, the client id (tenant id) must be provided. Without this, all method calls will fail. See [URL structure](Reference.md#url_structure).
+  - As part of the method URL, the client id (tenant id) must be provided. Without this, all method calls will fail. See [URL structure](Reference.md#url-structure).
   - A valid bearer token must be set as a header on the request. Without this, all method calls will fail. See [Authentication](Reference.md#authentication).
-  - All requests are performed in context of a request specific trace id, which can also be found in the system logs. See [Request tracing](Reference.md#request_tracing).
-  - The API provide POST methods only, taking a JSON payload as input. The JSON payload consists of one or more [partial entity specifications](partial_entity_specifications).
+  - All requests are performed in context of a request specific trace id, which can also be found in the system logs. See [Request tracing](Reference.md#request-tracing).
+  - The API provide POST methods only, taking a JSON payload as input. The JSON payload consists of one or more [partial entity specifications](partial_entity-specifications).
   - Two primary methods are provided for each [aggregate root](DataModel.md#aggregate-definitions): **Upsert** and **UpsertMultiple**. See [Operations](#operations).
-  - The API will automatically perform bulk operations for storing data. For performance, provide lists of items rather than sending multiple requests. See [Bulk handling](#bulk_handling).
-  - The API will automatically perform merge operations where appropriate. For performance, do not send data that do not need to be changed. See [Bulk handling](#bulk_handling).
-  - The API will automatically send change notification events to integrated systems on data changes. This behavior can be suppressed through request parameters. See [Standard parameters](#standard_parameters).
+  - The API will automatically perform bulk operations for storing data. For performance, provide lists of items rather than sending multiple requests. See [Bulk handling](#bulk-handling).
+  - The API will automatically perform merge operations where appropriate. For performance, do not send data that do not need to be changed. See [Bulk handling](#bulk-handling).
+  - The API will automatically send change notification events to integrated systems on data changes. This behavior can be suppressed through request parameters. See [Standard parameters](#standard-parameters).
   - The API is stateless and runs on multiple load balanced nodes.
 
 
@@ -34,7 +34,7 @@ In addition to **Upsert**, the API supports **UpsertMultiple**. The behavior of 
 
 Please note that due to automatic bulk handling, **UpsertMultiple** is preferred when dealing with multiple root aggregates (for example if importing a number of products).
 
-It should also be noted that due to the support for update operations, the API supports and expects [partial entity specifications](partial_entity_specifications) in the JSON payload.
+It should also be noted that due to the support for update operations, the API supports and expects [partial entity specifications](partial-entity-specifications) in the JSON payload.
 
 
 ## Partial entity specifications
@@ -176,4 +176,4 @@ When performing the upsert, there are actually 10 addresses and 2 customer objec
 
 In addition to the mandatory clientId (part of the request URL), all methods support "***noEvents***" (boolean query parameter): If set to true, the upsert operation will not cause data change events on the event bus. Most useful when migrating data, but also useful for avoiding integration event loops.
 
-Also, have a look at the supported [custom HTTP headers](Reference.md#custom_http_headers).
+Also, have a look at the supported [custom HTTP headers](Reference.md#custom-http-headers).
