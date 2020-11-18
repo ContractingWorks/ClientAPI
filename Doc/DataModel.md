@@ -5,6 +5,19 @@ the [REST API](ClientApi.md) only allows writing data according to Contracting.W
 
 The complete read model is available through GraphQL metadata. See [GraphQL Voyager](https://contracting-test-clientapi-graphql.azurewebsites.net/graphql/voyager/) for a visual representation of the model.
 
+## Database principles and conventions
+
+### Field names
+
+| **Postfix** | **Meaning**                                                  | **Examples**    |
+| :---------- | :----------------------------------------------------------- | :-------------- |
+| ID          | Internal ID for use in the DB. Generally a GUI (uniqueidentifier), but can be integer types for reference data.For Guids, never displayed to end users. | AddressID       |
+| Ext         | Data Originating in an external system. Can be skipped where the context is obvious. | EDokNoExt       |
+| IDExt       | External ID, originating in an external system.Can be displayed to end users depending on usage needs. | AssignmentIDExt |
+| No          | Number presented to end-users in Contracting. Used for searching and quick data entry. | AssignmentNo    |
+
+
+
 
 ## Main entities
 The list of [aggregate definitions](#aggregate-definitions) provides a complete overview of available aggregates. The main entities and their behavior as seen from an integrated system is described in sub-chapters here. The descriptions are not exhaustive, and are intended to provide an overall understanding of how to interact with the system rather than describing entity details. For details, please refer to the GraphQL metadata and the OpenAPI documentation, together with example projects located on GitHub.

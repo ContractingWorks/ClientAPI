@@ -9,130 +9,171 @@ Note that while the API uses REST style abstractions, it is *not* RESTful - that
 ## Basic principles 
 
 All methods provided by the API follow the same principles, described here. In brief:
-  - As part of the method URL, the client id (tenant id) must be provided. Without this, all method calls will fail. See [URL structure](#url_structure).
-  - A valid bearer token must be set as a header on the request.
-  - We only provide POST methods, taking a JSON payload as input.
-  - Two primary methods are provided for each [aggregate root](DataModel.md#aggregate-definitions): *Upsert* and *UpsertMultiple*.  
-  - The API will automatically perform bulk operations for storing data. For performance, provide lists of items rather than sending multiple requests.
-  - The API will automatically perform merge operations where appropriate. For performance, do not send data that do not need to be changed.
-  - The API will automatically send change notification events to integrated systems on data changes. This behavior can be suppressed through request parameters.
-  - The API is stateless and runs on multiple nodes.
-
-# Notes - please disregard anything below
-TODO
-
-## Using Compression
-
-The REST API allows the use of compression on the request and the response, using the standards defined by the HTTP 1.1 specification. Compression is automatically supported by some clients, and can be manually added to others. Visit [Salesforce](https://developer.salesforce.com/page/Web_Services_API) for more information on particular clients.
-
-To use compression, include the HTTP header Accept-Encoding: gzip or Accept-Encoding: deflate in a request. The REST API compresses the response if the client properly specifies this header. The response includes the header Content-Encoding: gzip or Accept-Encoding: deflate. You can also compress any request by including a Content-Encoding: gzip or Content-Encoding: deflate header.
-
-### Response Compression
-
-The REST API can optionally compress responses. Responses are compressed only if the client sends an Accept-Encoding header. The REST API is not required to compress the response even if you have specified Accept-Encoding, but it normally does. If the REST API compresses the response, it also specifies a Content-Encoding header.
-
-### Request Compression
-
-Clients can also compress requests. The REST API decompresses any requests before processing. The client must send a Content-Encoding HTTP header in the request with the name of the appropriate compression algorithm. For more information, see:
-
-- Content-Encoding at: [www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.11](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.11)
-- Accept-Encoding at: [www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.3](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.3)
-- Content Codings at: [www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.5](http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.5)
-
-## Authorization Through Connected Apps and OAuth 2.0
-
-For a client application to access REST API resources, it must be authorized as a safe visitor. To implement this authorization, use a connected app and an OAuth 2.0 authorization flow.
-
-### Configure a Connected App
-
-A connected app requests access to REST API resources on behalf of the client application. For a connected app to request access, it must be integrated with your org’s REST API using the OAuth 2.0 protocol. OAuth 2.0 is an open protocol that authorizes secure data sharing between applications through the exchange of tokens.
-
-For instructions to configure a connected app, see the Devico.Connect Authorization section. 
-
-### Apply an OAuth Authorization Flow
-
-OAuth authorization flows grant a client app restricted access to REST API resources on a resource server. Each OAuth flow offers a different process for approving access to a client app, but in general the flows consist of three main steps.
-
-- To initiate an authorization flow, a connected app, on behalf of a client app, requests access to a REST API resource.
-- In response, an authorizing server grants access tokens to the connected app.
-- A resource server validates these access tokens and approves access to the protected REST API resource.
-
-After reviewing and selecting an OAuth authorization flow, apply it to your connected app. For details about each supported flow, see  the Devico.Connect Authorization section. 
+  - As part of the method URL, the client id (tenant id) must be provided. Without this, all method calls will fail. See [URL structure](Reference.md#url_structure).
+  - A valid bearer token must be set as a header on the request. Without this, all method calls will fail. See [Authentication](Reference.md#authentication).
+  - All requests are performed in context of a request specific trace id, which can also be found in the system logs. See [Request tracing](Reference.md#request_tracing).
+  - The API provide POST methods only, taking a JSON payload as input. The JSON payload consists of one or more [partial entity specifications](partial_entity_specifications).
+  - Two primary methods are provided for each [aggregate root](DataModel.md#aggregate-definitions): **Upsert** and **UpsertMultiple**. See [Operations](#operations).
+  - The API will automatically perform bulk operations for storing data. For performance, provide lists of items rather than sending multiple requests. See [Bulk handling](#bulk_handling).
+  - The API will automatically perform merge operations where appropriate. For performance, do not send data that do not need to be changed. See [Bulk handling](#bulk_handling).
+  - The API will automatically send change notification events to integrated systems on data changes. This behavior can be suppressed through request parameters. See [Standard parameters](#standard_parameters).
+  - The API is stateless and runs on multiple load balanced nodes.
 
 
+## Operations
 
-### Special request and response headers
+For all [aggregate roots](DataModel.md#aggregate-definitions), the API supports a single primary operation: **Upsert**. The operation will perform a create or update operation as needed.
 
-- `X-AUSERNAME` – response header that contains either username of the authenticated user or 'anonymous'.
-- `X-XXX-Token` – methods that accept multipart/form-data will only process requests with `X-XXX-Token: no-check` header.
+Basic **CRUD** operation breakdown:
+  - **Create**: Upsert, with all mandatory fields filled in. If a legal ID is provided, the entity will be created with the given ID. Otherwise, a new ID will be created by the system. The request will return the entity's ID along with HTTP code 200 (Ok). If creation fails, an error messge will be provided instead, with detail level according to environment configuration. See [Error handling](Reference.md#errors).
+  - **Read**: Not supported. For reading entity data, please use the [GraphQl API](ClientApi.GraphQL.md).
+  - **Update**: Upsert, with the ID of an existing entity provided. Only provided fields will be updated (in addition to the system fields Sys_LastUpdated and Sys_LastUpdatedBy). The return values are identical to the return values when creating entities.
+  - **Delete**: Hard deletes are not supported through the API. For soft deletes, please set the column *Sys_Deactivated* to true.
 
-### Error responses
+In addition to **Upsert**, the API supports **UpsertMultiple**. The behavior of Upsert and UpsertMultiple is identical - in fact, under the hood **UpsertMultiple** is used internally. The only difference between the methods is that **UpsertMultiple** will take a list of DTOs (Data Transfer Objects) representing the methods [root aggregate](DataModel.md#aggregate-definitions), and return a list of created or updated IDs.
 
-Most resources will return a response body in addition to the status code. Usually, the JSON schema of the entity returned is the following:
+Please note that due to automatic bulk handling, **UpsertMultiple** is preferred when dealing with multiple root aggregates (for example if importing a number of products).
 
-Copy
+It should also be noted that due to the support for update operations, the API supports and expects [partial entity specifications](partial_entity_specifications) in the JSON payload.
 
-```
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 ``{    "id": "https://XXXX/REST/schema/error-collection#",    "title": "Error Collection",    "type": "object",    "properties": {        "errorMessages": {            "type": "array",            "items": {                "type": "string"            }        },        "errors": {            "type": "object",            "patternProperties": {                ".+": {                    "type": "string"                }            },            "additionalProperties": false        },        "status": {            "type": "integer"        }    },    "additionalProperties": false }
+
+## Partial entity specifications
+
+When specifying data to be upserted, there is a difference between ignoring a property and setting it to a null value. Using Microsoft-style Json comments to explain the property behavior:
+```javascript
+{
+   "Name":"Åsmund",  // set value
+   "Phone":null      // set value to null
+   //"Country": null // not altered (not part of JSON)
+}
 ```
 
-#### 
-
-## Examples
-
-This guide contains a range of examples, including examples of requests for creating issues, updating issues, searching for issues, and more.
-
-We've also provided a simple example below to get you started. The example shows you how to create an issue using the Jira REST API. The sample code uses [curl](https://curl.haxx.se/) to make requests, but you can use any tool you prefer.
-
-Note:
-
-- The input file is denoted by the `--data @filename` syntax. The data is shown separately, and uses the JSON format.
-- Make sure the content type in the request is set to `application/json`, as shown in the example.
-- POST the JSON to your  server. In the example, the server is `http://localhost:8080/XXX/rest/api/2/issue/`.
-- The example uses basic authentication with admin/admin credentials.
-- You'll need to add a project to the instance before running and get the project ID of the project to which you want to add the issue beforehand.
-
-To create an issue using the Jira REST API, follow these steps:
-
-1. Create the data file that contains the POST data. For this example, we'll assume the file is named `data.txt`.
-
-2. Add the following JSON to the file:
-
-   Copy
-
-   `1 2 3 4 5 6 7 8 9 10 11 12 13 ``{    "fields": {       "project":       {          "id": "10000"       },       "summary": "No REST for the Wicked.",       "description": "Creating of an issue using ids for projects and issue types using the REST API",       "issuetype": {          "id": "3"       }   } }`
-
-   In this data, the project ID is 10000 and the issue type in our case is 3, which represents a task. You should pick an ID of a project in your instance and whichever issue type you prefer.
-
-   Note that instead of the `id` you can also use the key and name for the `project` and `issuetype` respectively. For example,`"key": "TEST"` for the project and `"name": "Task"` for the `issuetype`.
-
-3. In Terminal window, run the following command:
-
-   Copy
-
-   `1 ``curl -u admin:admin -X POST --data @data.txt -H "Content-Type: application/json" http://localhost:8080/XXX/rest/api/2/issue/`
-
-   As before, adjust details for your environment, such as the hostname or port of the Jira instance. Note that a cloud instance or most public instances would require the use of HTTPS and, of course, valid credentials for the instance.
-
-4. When your issue is created, check the response that will look something like this: 
-
-   Copy
-
-   `1 2 3 4 5 ``{   "id":"10009",   "key":"TEST-10",    "self":"http://localhost:8080/XXX/rest/api/2/issue/10009" } `
-
-   That's it! You can use the issue ID, issue key, and the URL to the issue for additional requests, if you wish.
-
-To get an issue you just created, use `http://localhost:8080/XXX/rest/api/2/issue/{issueIdOrKey}` endpoint:
-
-Copy
-
-```
-1 ``curl -u admin:admin http://localhost:8080/XXX/rest/api/2/issue/TEST-10 | python -mjson.tool
+The actual JSON sent in the request body would probably looks something like this:
+```javascript
+{
+   "Name":"Åsmund",
+   "Phone":null    
+}
 ```
 
-We use `python -mjson.tool` to pretty print json.nk to Swagger / OpenAPI 
+**Note: beaceuse all fields may be omitted from the input json, all fields are defined as nullable in the DTOs.**
 
-## Externally available test environments 
 
-## Dealing with authorization & client data access  
+## Updating aggregate parts
 
+Each part of an [aggregate](DataModel.md#aggregate-definitions) may either be a single item, such as an the customer.default_Address or a list of items, such as customer.contacts. For customers, the default_Address and invoice_Address both appear as part of the addresses on the customer, but more addresses may be present there.
+
+For example, we might have the following structure on a customer (the example is incomplete):
+```javascript
+{
+   "customerId":"C1",
+   "default_AddressId":"A1",
+   "invoice_AddressId":"A2",
+   "addresses":[{"addressId":"A1"}, {"addressId":"A2"}, {"addressId":"A3"}]
+}
+```
+
+For direct relations to a single aggregate part (such as default_Address) on the customer, this is represented ***twice*** in the DTOs: as an aggregate part DTO of type Address, and as a field on the entity named default_Address***Id***.
+To switch defaultAddress to another already existing address with a known ID, it is sufficient to update the default_Address***Id*** field on the customer DTO.
+
+Example: Setting the default address to the address with ID A3
+```javascript
+{
+   "customerId":"C1",
+   "default_AddressId":"A3"
+}
+```
+
+To update the name field on the existing default address, there are two options:
+```javascript
+{
+   "customerId":"C1",
+   "default_Address":{
+      "addressId":"A3",
+	  "name":"Åsmund"
+	  }
+}
+```
+
+Or, through the addresses list:
+```javascript
+{
+   "customerId":"C1",
+   "addresses":[{
+      "addressId":"A3",
+	  "name":"Åsmund"
+	  }]
+}
+```
+
+The syntax above will *NOT* remove the other addresses from the list, it will instead ignore the other addresses and update the address provided. To remove addresses from the list, set them as deactivated by setting the field Sys_Deactivated to true.
+
+**Do not specify the details twice (such as through both the addresses list and the default_Address relation. This is considered an error, and will not be accepted by the API.**
+
+To create a new entity, either provide a new, unused ID for the entity to be created (most relevant during data migration), or simply omit the ID. To create a new customer with a new default address, the example from above becomes:
+```javascript
+{
+   "default_Address":{
+     "name":"Åsmund"
+	  }
+}
+```
+
+
+## Bulk handling
+
+The API will automatically use bulk upserts when there are more than a threshold level of items in a list. Note that bulk operations may be used when processing a single aggregate root, as the aggregate may contain lists of items.
+For example, a customer with a number of (minimal) addresses:
+
+```javascript
+{
+   "customerId":"C1",
+   "addresses":[{"addressId":"A1", "name":"Åsmund"}, {"addressId":"A2", "name":"Cato"}, {"addressId":"A3", "name":"Ruben"}]
+}
+```
+When partially specifying a set of entities, the same set of properties must be present on all elements in the list. For example, omitting the "name" property from the list of addresses.
+
+This is also true if the DTOs originate in different places, as they are merged to a single list and handled together by the API. For example, the following would cause problems:
+```javascript
+{
+   "customerId":"C1",
+   "default_Address":{
+      "addressId":"A4",
+	  "name":"Aleksandra",
+	  "address1":"Somewhere"
+	  }
+   "addresses":[{"addressId":"A1", "name":"Åsmund"}, {"addressId":"A2", "name":"Cato"}, {"addressId":"A3", "name":"Ruben"}]
+}
+```
+
+The reason for the issue is that only the address with ID A4 specifies the "address1" field, so the field is missing from the specifications given thrugh the "addresses" list.
+
+Note that it is the total amount of a specific DTO which causes bulk operations to be used. Given the following list of customers:
+```javascript
+[{
+   "customerId":"C1",
+   "default_Address":{
+      "addressId":"A4",
+	  "name":"Aleksandra",
+	  "address1":"Somewhere"
+	  }
+   "addresses":[{"addressId":"A1", "name":"Åsmund"}, {"addressId":"A2", "name":"Cato"}, {"addressId":"A3", "name":"Ruben"}, {"addressId":"A9", "name":"Susann"}]
+},
+{
+   "customerId":"C2",
+   "default_Address":{
+      "addressId":"A5",
+	  "name":"Haris",
+	  }
+   "addresses":[{"addressId":"A6", "name":"Jitesh"}, {"addressId":"A7", "name":"Per-Christian", }, {"addressId":"A8", "name":"Jan"}, {"addressId":"A10", "name":"Jan-Morten"}]
+}]
+```
+
+When performing the upsert, there are actually 10 addresses and 2 customer objects present here. As it happens, bulk operations currently start when there are 10 objects or more updated, so here a bulk upsert to the DB will happen under the hood on the addresses, while the customer objects will be upserted one by one.
+
+
+## Standard parameters
+
+In addition to the mandatory clientId (part of the request URL), all methods support "***noEvents***" (boolean query parameter): If set to true, the upsert operation will not cause data change events on the event bus. Most useful when migrating data, but also useful for avoiding integration event loops.
+
+Also, have a look at the supported [custom HTTP headers](Reference.md#custom_http_headers).

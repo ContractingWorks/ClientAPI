@@ -21,24 +21,24 @@ GraphQL Playground is an interactive editor for testing out your GraphQL queries
 
 Using Playground straight forward (just try it!). The query editor supports code completion based on the current model, which is also available in the sidebar navigation containing two tabs (*Docs* and *Schema*) listing all operations available in the API. The Playground allows you to quickly familiarize yourself with the API, perform example operations, and send your first queries.
 
-[The playground is available here](https://contracting-test-clientapi-graphql.azurewebsites.net/graphql/playground/)
+[The playground is available here](https://contracting-extest-clientapi-graphql.azurewebsites.net/graphql/playground/)
 
 *_Note: in Contracting.Works, all GraphQL queries must specify the current client (tenant) and also provide a valid bearer token with access to the client._*
 
-- The GraphQL path on the tab in the playground (just beside _History_) need to be on the following format (replace "a-anonymisert" with your clientId): https://contracting-test-clientapi-graphql.azurewebsites.net/client/a-anonymisert/graphql
+- The GraphQL path on the tab in the playground (just beside _History_) need to be on the following format (replace "a-anonymisert" with your clientId): https://contracting-extest-clientapi-graphql.azurewebsites.net/client/b-dummydata/graphql
 - Under HTTP HEADERS at the bottom of the screen, the following must be specified: {"Authorization":"Bearer _[bearer token value]_"} (see [Getting a valid bearer token](#getting-a-valid-bearer-token) for getting a valid token)
 
 ### GraphQL Voyager
-[GraphQL Voyager](https://contracting-test-clientapi-graphql.azurewebsites.net/graphql/voyager/) is a tool for visualizing GraphQL medatada - the Contracting.Works data model is available here. Note that this is a large model, so the visualization performance may be slow.
+[GraphQL Voyager](https://contracting-extest-clientapi-graphql.azurewebsites.net/graphql/voyager/) is a tool for visualizing GraphQL medatada - the Contracting.Works data model is available here. Note that this is a large model, so the visualization performance may be slow.
 
 ### Swagger API
 While the GraphqQl API is not REST based, all Contracting.Works services also contain a Swagger API. This is useful for e.g. checking permissions and service health - and for for getting a valid bearer token for interactive testing purposes (see [Getting a valid bearer token](#getting-a-valid-bearer-token)).
 
-[The Swagger UI is located here](https://contracting-test-clientapi-graphql.azurewebsites.net/swagger/index.html)
+[The Swagger UI is located here](https://contracting-extest-clientapi-graphql.azurewebsites.net/swagger/index.html)
 
 #### Getting a valid bearer token
 
-A valid bearer token can fetched by accessing the site's [Swagger UI](https://contracting-test-clientapi-graphql.azurewebsites.net/swagger/index.html), and performing a login for your user (please remember to tick the "Scopes"-checkbox).
+A valid bearer token can fetched by accessing the site's [Swagger UI](https://contracting-extest-clientapi-graphql.azurewebsites.net/swagger/index.html), and performing a login for your user (please remember to tick the "Scopes"-checkbox).
 
 Click "Try it out" on a command which require authenticated access, for example AuthInfo. You do not need to provide a valid clientId here - you are not interested in the response, but rather the Curl-query itself. This will contain a valid bearer token value. 
 
@@ -73,7 +73,7 @@ query {
   }
 }
 ```
-[Try it in GraphQL Playground](https://contracting-test-clientapi-graphql.azurewebsites.net/graphql/playground/?query=query%20%7B%0A%20%20customers%20%7B%0A%20%20%20%20items%20%7B%0A%20%20%20%20%20%20name%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A)
+[Try it in GraphQL Playground](https://contracting-extest-clientapi-graphql.azurewebsites.net/graphql/playground/?query=query%20%7B%0A%20%20customers%20%7B%0A%20%20%20%20items%20%7B%0A%20%20%20%20%20%20name%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A)
 
 
 Note that all words are **case sensitive** here, including entity and property names. For sets of entities, the "items" node is mandatory. Any root query in Contracting.Works is a set of items - even if only a single item is returned.
@@ -503,4 +503,4 @@ A slight difference to our TypeScript example (see above), but we did it anyway.
 
 ## Error types and handling
 
-The list can be found in [Reference.md](https://github.com/ContractingWorks/ClientAPI/blob/main/Doc/Reference.md) description
+The list can be found in [Reference.md](Reference.md) description
