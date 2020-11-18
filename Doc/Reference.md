@@ -12,6 +12,7 @@ https://contracting-extest-clientapi.azurewebsites.net/client/b-dummydata/Assign
 
 Note that version information is not part of the URL here. Version information will instead be part of the service base URL, and will be added when needed. See [API versioning](api_versioning) for further information.
 
+
 ## API versioning
 All Contracting Works servieces may be updated frequently, and are subject to change. We stive to keep the APIs backwards compatible, but expect that there will be breaking chages to the APIs from time to time.
 
@@ -34,20 +35,24 @@ The APIs are considered under heavy development until January 2021. Until then, 
   
 **On the response:**
   - x-correlation-id = <ID>: The same ID as on the incoming request. If no ID was provided, a new guid will be generated and used as the ID. This is the ID to search for in system logs when debugging any issues.
-  - x-perf-server-response-start: The time from the incoming request is started and until the API starts writing the response body. This is a good indicator of internal server performance; if this time is low any performance issues originate in the network / server infrastructure, not the service itself.
+  - x-perf-server-response-start: The time from the incoming request is started and until the API starts writing the response body. This is a good indicator of internal server and database performance; if this time is low any performance issues originate in the network / server infrastructure, not the service itself.
 
 
+## Date and time handling
+All time information is stored in UTC (Coordinated Universal Time) internally in Contracting Works. We use [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) for date time format specification, and prefer full UTC specification when a time component is present.
 
+When fetching data through GraphQL, the API will return the following formats:
 
-## Date handling
+|----------|---------------------------|--------------------------|------------------------------------------------------------------|
+| Type     | Format                    | Example                  | Comment                                                          |           
+|----------|---------------------------|--------------------------|------------------------------------------------------------------|
+| DateTime | yyyy-MM-ddTHH:mm:ss.fffZ  | 2020-11-18T10:34:10.123Z | Fractions are optional, and will only be provided where relevant |
+| Date     | yyyy-MM-dd                | 2020-11-18               |                                                                  |
 
-Dates are stored in UTC format in the database.  For Contracting.Works data presentation to users purpose , date conversion is handled by the GUI.
+The examples above will be parsed correctly and are what we test internally. Note that we allow more flexible date time inputs when changing data. If a time zone is not explicitly specified, Contracting will always assume that the time is specified in UTC.
 
-Datetime:   yyyy-MM-ddTHH:mm:ss.fffZ
+**Known issue (fix pending): In some cases, returned data from Contracting are currently missing the time zone specifier (the Z above). The correct time zone is UTC here - local time zone should not be assumed.**
 
-Date:  yyyy-MM-dd
-
-However, currently it is not rendered correctly by  GraphQL ... - 
 
 ## Error responses  - to be looked at
 
@@ -161,58 +166,6 @@ Contracting.Works is committed to supporting each API version for a minimum of X
 
 When an API version is to be deprecated, advance notice is given at least one year before support ends. Contracting.Works will directly notify customers using API versions planned for deprecation.
 
-## URI structure
-
-Contracting.Works REST APIs provide access to resources (data entities) via URI paths. To use a REST API, your application will make an HTTP request and parse the response. The Jira REST API uses [JSON](http://en.wikipedia.org/wiki/JSON) as its communication format, and the standard HTTP methods like `GET`, `PUT`, `POST` and `DELETE` (see API descriptions below for which methods are available for each resource). URIs for Jira's REST API resource have the following structure:
-
-```
-http://host:port/context/rest/api-name/api-version/resource-name
-```
-
-Currently there are two API names available, which will be discussed further below:
-
-- `auth` - for authentication-related operations, and
-- `api` - for everything else.
-
-There is a [WADL](http://en.wikipedia.org/wiki/Web_Application_Description_Language) document that contains the documentation for each resource in the Contracting.Works REST API. It is available XXX
-
-## Methods
-
-### System
-
-#### Get the liveness status of the system
-
-#### Get the readiness status of the system
-
-#### Get the storage metadata
-
-### Bulk operations
-
-### Graph
-
-#### Get information about the specified index
-
-#### List existing indices
-
-#### Run a graph query
-
-### Jobs
-
-#### Clean up job data
-
-#### Stop a given  job
-
-#### List all jobs
-
-#### Get information for a given  job
-
-### Model
-
-### Records
-
-See GraphQL.md for getting records
-
-See REST.md for operations on the records
 
 ### Search
 
@@ -261,11 +214,6 @@ OAuth authorization flows grant a client app restricted access to REST API resou
 After reviewing and selecting an OAuth authorization flow, apply it to your connected app. For details about each supported flow, see  the Devico.Connect Authorization section. 
 
 
-
-### Special request and response headers
-
-- `X-AUSERNAME` – response header that contains either username of the authenticated user or 'anonymous'.
-- `X-XXX-Token` – methods that accept multipart/form-data will only process requests with `X-XXX-Token: no-check` header.
 
 ### Error responses
 
