@@ -32,13 +32,13 @@ Using Playground straight forward (just try it!). The query editor supports code
 [GraphQL Voyager](https://contracting-extest-clientapi-graphql.azurewebsites.net/graphql/voyager/) is a tool for visualizing GraphQL medatada - the Contracting.Works data model is available here. Note that this is a large model, so the visualization performance may be slow.
 
 ### Swagger API
-While the GraphqQl API is not REST based, all Contracting.Works services also contain a Swagger API. This is useful for e.g. checking permissions and service health - and for for getting a valid bearer token for interactive testing purposes (see [Getting a valid bearer token](#getting-a-valid-bearer-token)).
+While the GraphqQl API is not REST based, all Contracting.Works services also contain a Swagger API. This is useful in number of cases, such as checking permissions and service health, getting a valid bearer token for interactive testing purposes (see [Getting a valid bearer token](#getting-a-valid-bearer-token)) and other cases.
 
 [The Swagger UI is located here](https://contracting-extest-clientapi-graphql.azurewebsites.net/swagger/index.html)
 
 #### Getting a valid bearer token
 
-A valid bearer token can fetched by accessing the site's [Swagger UI](https://contracting-extest-clientapi-graphql.azurewebsites.net/swagger/index.html), and performing a login for your user (please remember to tick the "Scopes"-checkbox).
+A valid bearer token can be fetched by accessing the site's [Swagger UI](https://contracting-extest-clientapi-graphql.azurewebsites.net/swagger/index.html), and performing a login for your user (please remember to tick the "Scopes" checkbox).
 
 Click "Try it out" on a command which require authenticated access, for example AuthInfo. You do not need to provide a valid clientId here - you are not interested in the response, but rather the Curl-query itself. This will contain a valid bearer token value. 
 
@@ -140,7 +140,7 @@ query($filter0: String, $take0: int) {
 }
 ```
 
-To set the parameter values on a query in GraphQL Playground, a json structure must be used under "Query variables" at the bottom of the screen:
+To set the parameter values on a query in GraphQL Playground, a JSON structure must be used under "Query variables" at the bottom of the screen:
 
 ```javascript
 {"take0": 10, "filter0":"customerId!='D2AFDDC5-88A0-5C0C-AF24-001220D51881'"}
@@ -349,7 +349,7 @@ Any client using the API needs to provide following access tokens:
 - The `Authorization` header, specifically, `Authorization: Bearer MY_TOKEN`.
 - The `access_token` URL query parameter.
 
-The token must have an access to the client environment you're targeting. For example, if you create an access token that only has access to the particular client, you cannot use that token to access another client's data
+The token must have an access to the client environment you are targeting. For example, if you create an access token that only has access to the particular client, you cannot use that token to access another client's data.
 
 To learn more about authentication in Contracting.Works and how to create your own access tokens take a look to the [Authentication reference documentation](Devinco.Connect.md).
 
@@ -397,7 +397,7 @@ curl "https://contracting-extest-clientapi-graphql.azurewebsites.net/client/XXX/
 
 Yes, you can query our GraphQL demo endpoint direct from the command line, or your own App!
 
-The demo endpoint is unauthenticated, and although we’ve imposed read-only access, with a maximum return of 20 results per query, you can quickly demonstrate a working integration and/or proof of concept.
+The demo endpoint is unauthenticated, and although we have imposed read-only access, with a maximum return of 20 results per query, you can quickly demonstrate a working integration and/or proof of concept.
 
 - [Using cURL]
 - [Using Powershell]
