@@ -1,22 +1,22 @@
 # REST API principles and examples
 
-Contracting Works use a REST API, documented through [OpenAPI 3.0](https://contracting-extest-clientapi.azurewebsites.net/swagger/v1/swagger.json) and available for interactive testing through a [Swagger page.](https://contracting-extest-clientapi.azurewebsites.net/swagger/index.html)
+Contracting Works use a REST API, documented through [OpenAPI 3.0](https://contracting-extest-clientapi.azurewebsites.net/swagger/v1/swagger.json) and is available for interactive testing through a [Swagger page.](https://contracting-extest-clientapi.azurewebsites.net/swagger/index.html)
 
 The API is used for altering data only. To query for data, please refer to the [GraphQl API](ClientApi.GraphQL.md)
 
-Note that while the API uses REST style abstractions, it is *not* RESTful - that is entity paths are not expressed thrugh the API URLs. Instead, entity identifiers is provided as part of the API method payloads.
+Note that while the API uses REST style abstractions, it is *not* RESTful - that is entity paths are not expressed through the API URLs. Instead, entity identifiers are provided as part of the API method payloads.
 
 ## Basic principles 
 
 All methods provided by the API follow the same principles, described here. In brief:
-  - As part of the method URL, the client id (tenant id) must be provided. Without this, all method calls will fail. See [URL structure](Reference.md#url-structure).
-  - A valid bearer token must be set as a header on the request. Without this, all method calls will fail. See [Authentication](Reference.md#authentication).
+  - As part of the method URL, the client id (tenant id) must be provided. Without this, all methods' calls will fail. See [URL structure](Reference.md#url-structure).
+  - A valid bearer token must be set as a header on the request. Without this, all methods' calls will fail. See [Authentication](Reference.md#authentication).
   - All requests are performed in context of a request specific trace id, which can also be found in the system logs. See [Request tracing](Reference.md#request-tracing).
   - The API provide POST methods only, taking a JSON payload as input. The JSON payload consists of one or more [partial entity specifications](partial_entity-specifications).
   - Two primary methods are provided for each [aggregate root](DataModel.md#aggregate-definitions): **Upsert** and **UpsertMultiple**. See [Operations](#operations).
-  - The API will automatically perform bulk operations for storing data. For performance, provide lists of items rather than sending multiple requests. See [Bulk handling](#bulk-handling).
-  - The API will automatically perform merge operations where appropriate. For performance, do not send data that do not need to be changed. See [Bulk handling](#bulk-handling).
-  - The API will automatically send change notification events to integrated systems on data changes. This behavior can be suppressed through request parameters. See [Standard parameters](#standard-parameters).
+  - The API will automatically perform bulk operations for storing data. To ensure performance, please provide lists of items rather than sending multiple requests. See [Bulk handling](#bulk-handling).
+  - The API will automatically perform merge operations where appropriate. To ensure performance, please do not send data that do not need to be changed. See [Bulk handling](#bulk-handling).
+  - The API will automatically send change notification events to integrated systems on data changes. This behavior can be suppressed through the request parameters. See [Standard parameters](#standard-parameters).
   - The API is stateless and runs on multiple load balanced nodes.
 
 
