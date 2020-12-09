@@ -32,7 +32,7 @@ Using Playground straight forward (just try it!). The query editor supports code
 [GraphQL Voyager](https://contracting-extest-clientapi-graphql.azurewebsites.net/graphql/voyager/) is a tool for visualizing GraphQL medatada - the Contracting.Works data model is available here. Note that this is a large model, so the visualization performance may be slow.
 
 ### Swagger API
-While the GraphqQl API is not REST based, all Contracting.Works services also contain a Swagger API. This is useful in number of cases, such as checking permissions and service health, getting a valid bearer token for interactive testing purposes (see [Getting a valid bearer token](#getting-a-valid-bearer-token)) and other cases.
+While the GraphqQl API is not REST based, all Contracting.Works services also contain a Swagger API. This is useful for operations such as checking permissions, checking service health and getting a valid bearer token for interactive testing purposes (see [Getting a valid bearer token](#getting-a-valid-bearer-token)).
 
 [The Swagger UI is located here](https://contracting-extest-clientapi-graphql.azurewebsites.net/swagger/index.html)
 
