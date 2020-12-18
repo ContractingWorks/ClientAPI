@@ -1,8 +1,8 @@
 # REST API principles and examples
 
-Contracting Works use a REST API, documented through [OpenAPI 3.0](https://contracting-extest-clientapi.azurewebsites.net/swagger/v1/swagger.json) and is available for interactive testing through a [Swagger page.](https://contracting-extest-clientapi.azurewebsites.net/swagger/index.html)
+Contracting Works use a REST API, documented at [OpenAPI 3.0](https://contracting-extest-clientapi.azurewebsites.net/swagger/v1/swagger.json) and  available for interactive testing through a [Swagger page.](https://contracting-extest-clientapi.azurewebsites.net/swagger/index.html)
 
-The API is used for altering data only. To query for data, please refer to the [GraphQl API](ClientApi.GraphQL.md)
+The API is used for altering data only. To query the data, please refer to the [GraphQl API](ClientApi.GraphQL.md)
 
 Note that while the API uses REST style abstractions, it is *not* RESTful - that is entity paths are not expressed through the API URLs. Instead, entity identifiers are provided as part of the API method payloads.
 
@@ -122,7 +122,7 @@ To create a new entity, either provide a new, unused ID for the entity to be cre
 
 ## Bulk handling
 
-The API will automatically use bulk upserts when there are more than a threshold level of items in a list. Note that bulk operations may be used when processing a single aggregate root, as the aggregate may contain lists of items.
+The API will automatically use bulk upserts, when there are more than a threshold level of items in a list. Note, that bulk operations may be used, when processing a single aggregate root, as the aggregate may contain lists of items.
 For example, a customer with a number of (minimal) addresses:
 
 ```javascript
@@ -131,7 +131,7 @@ For example, a customer with a number of (minimal) addresses:
    "addresses":[{"addressId":"A1", "name":"Åsmund"}, {"addressId":"A2", "name":"Cato"}, {"addressId":"A3", "name":"Ruben"}]
 }
 ```
-When partially specifying a set of entities, the same set of properties must be present on all elements in the list. For example, omitting the "name" property from the list of addresses.
+When partially specifying a set of entities, the same set of properties must be present on all the elements in the list. For example, omitting the "name" property from the list of addresses.
 
 This is also true if the DTOs originate in different places, as they are merged to a single list and handled together by the API. For example, the following would cause problems:
 ```javascript
@@ -146,9 +146,9 @@ This is also true if the DTOs originate in different places, as they are merged 
 }
 ```
 
-The reason for the issue is that only the address with ID A4 specifies the "address1" field, so the field is missing from the specifications given thrugh the "addresses" list.
+The reason for the issue is that only the address with ID A4 specifies the "address1" field, so the field is missing from the specifications given through the "addresses" list.
 
-Note that it is the total amount of a specific DTO which causes bulk operations to be used. Given the following list of customers:
+Note, that it is the total amount of a specific DTO, which causes bulk operations to be used. Given the following list of customers:
 ```javascript
 [{
    "customerId":"C1",
@@ -174,6 +174,6 @@ When performing the upsert, there are actually 10 addresses and 2 customer objec
 
 ## Standard parameters
 
-In addition to the mandatory clientId (part of the request URL), all methods support "***noEvents***" (boolean query parameter): If set to true, the upsert operation will not cause data change events on the event bus. Most useful when migrating data, but also useful for avoiding integration event loops.
+In addition to the mandatory clientId (part of the request URL), all the methods support "***noEvents***" (boolean query parameter): If set to true, the upsert operation will not cause data change events on the event bus. This functionality is the most useful when migrating data, but also useful for avoiding integration event loops.
 
 Also, have a look at the supported [custom HTTP headers](Reference.md#custom-http-headers).
