@@ -8,7 +8,7 @@ Documentation and examples for using the Contracting.Works APIs
 
 The APIs can be tested on dummy data using standardized credentials using GraphQL Playground and Swagger. [See Demo](Demo.md).
 
-**Note: the demo data set is shared between anybody testing against it. It will be reset to its original state periodically. As it is an open data set running on limited resources, please treat it nicely!**
+**Note: the demo data set is shared between everyone testing against it. It will be periodically reset to its original state. As it is an open data set running on limited resources, please treat it nicely!**
 
 ## Getting started
 
