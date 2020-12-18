@@ -13,19 +13,19 @@ The Contracting.Works Client API is based on CQRS (Command Query Resource Segreg
 - [Guides and Best Practices (↗)](https://www.graphql.com/guides/)
 
 ## Services and endpoints
-The same GraphQL library and functionality as is used here is in use on several other parts of Contracting.Works, such as services for retrieving translated user interface texts or user settings. In addition to the main GraphQL endpoint, all GraphQL interfaces in Contracting.Works contains several utilities listed below.
+The same GraphQL library and functionality as is used here is in use on several other parts of Contracting.Works, such as services for retrieving translated user interface texts or user settings. In addition to the main GraphQL endpoint, all GraphQL interfaces in Contracting.Works contain several utilities listed below.
 
 ### GraphQL Playground
 
 GraphQL Playground is an interactive editor for testing out your GraphQL queries, accessible through your web browser.
 
-Using Playground straight forward (just try it!). The query editor supports code completion based on the current model, which is also available in the sidebar navigation containing two tabs (*Docs* and *Schema*) listing all operations available in the API. The Playground allows you to quickly familiarize yourself with the API, perform example operations, and send your first queries.
+Using Playground is straight forward (just try it!). The query editor supports code completion based on the current model, which is also available in the sidebar navigation containing two tabs (*Docs* and *Schema*). Those two list all operations available in the API. The Playground allows you to quickly familiarize yourself with the API, perform example operations, and send your first queries.
 
 [The playground is available here](https://contracting-extest-clientapi-graphql.azurewebsites.net/graphql/playground/)
 
 *_Note: in Contracting.Works, all GraphQL queries must specify the current client (tenant) and also provide a valid bearer token with access to the client._*
 
-- The GraphQL path on the tab in the playground (just beside _History_) need to be on the following format (replace "a-anonymisert" with your clientId): https://contracting-extest-clientapi-graphql.azurewebsites.net/client/b-dummydata/graphql
+- The GraphQL path on the tab in the playground (just beside _History_) needs to be of the following format (replace "a-anonymisert" with your clientId): https://contracting-extest-clientapi-graphql.azurewebsites.net/client/b-dummydata/graphql
 - Under HTTP HEADERS at the bottom of the screen, the following must be specified: {"Authorization":"Bearer _[bearer token value]_"} (see [Getting a valid bearer token](#getting-a-valid-bearer-token) for getting a valid token)
 
 ### GraphQL Voyager
@@ -78,7 +78,7 @@ query {
 
 Note that all words are **case sensitive** here, including entity and property names. For sets of entities, the "items" node is mandatory. Any root query in Contracting.Works is a set of items - even if only a single item is returned.
 
-In order to drill down further in the data set following relations, query the relation as part of the root entity as follows:
+In order to drill down further in the data set following relations, one should query the relation as part of the root entity as follows:
 
 ```javascript
 query {
@@ -112,7 +112,7 @@ query {
 }
 ```
 
-The "items" node serves a single purpose: to provide somewhere where we might get a total count if we return paginated data. The total count can be retrieved as follows:
+The "items" node serves a single purpose: to provide a place to get a total count, if the return of paginated data is needed. The total count can be retrieved as follows:
 
 ```javascript
 query {
@@ -125,9 +125,9 @@ query {
 }
 ```
 
-Please be aware that getting the total count has a (small) cost on the underlying database query, and should be avoided if not needed for performance reasons (for example, if you get all records without pagination).
+Please be aware that getting the total count has a (small) cost on the underlying database query, and should be avoided, if not needed for performance reasons (for example, if you get all records without pagination).
 
-Queries may take variables as input. This is a useful technique for improving readability and reusability of queries. A parametrized query looks like this, using $filter0 and $take0 as variables. Note that the query must specify the types of the input variables.
+Queries may take variables as input. This is a useful technique for improving readability and reusability of the queries. A parametrized query looks like follows, using $filter0 and $take0 as variables. Note that the query must specify the types of the input variables.
 To use the variables, reference them with the full name including the leading dollar sign (which is mandatory).
 
 ```javascript
@@ -178,7 +178,7 @@ query {
 ```
 
 ### Paths
-A *path* originate on the currently filtered object, and may represent any field or direct relations. In general, any field ending with "Id" except for the Id of the current entity itself indicate path navigation is possible if dropping the "Id"-part. For example, an assignment has a field named "addressId", indicating a single address. This address can be navigated in a path expression. Example:
+A *path* originate on the currently filtered object, and may represent any field or direct relations. In general, any field ending with "Id", except for the Id of the current entity itself, can indicate path navigation, if one drops the "Id"-part. For example, an assignment has a field named "addressId", that indicates a single address. This address can be navigated in a path expression. Example:
 
 ```javascript
 query {
@@ -192,7 +192,7 @@ query {
 }
 ```
 
-Paths are used both when filtering, as in the example above, and when sorting data.
+Paths are used bothf for filtering, as in the example above, and for sorting data.
 
 
 ### Sorting the results
