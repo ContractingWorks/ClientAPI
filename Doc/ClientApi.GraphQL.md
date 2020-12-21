@@ -19,7 +19,7 @@ The same GraphQL library and functionality as is used here is in use on several 
 
 GraphQL Playground is an interactive editor for testing out your GraphQL queries, accessible through your web browser.
 
-Using Playground is straight forward (just try it!). The query editor supports code completion based on the current model, which is also available in the sidebar navigation containing two tabs (*Docs* and *Schema*). Those two list all operations available in the API. The Playground allows you to quickly familiarize yourself with the API, perform example operations, and send your first queries.
+Using Playground is straight forward (just try it!). The query editor supports code completion based on the current model. The model is also available in the sidebar navigation containing two tabs (*Docs* and *Schema*). These tabs list all operations available in the API. The Playground allows you to quickly familiarize yourself with the API, perform example operations, and send your first queries.
 
 [The playground is available here](https://contracting-extest-clientapi-graphql.azurewebsites.net/graphql/playground/)
 
@@ -78,7 +78,7 @@ query {
 
 Note that all words are **case sensitive** here, including entity and property names. For sets of entities, the "items" node is mandatory. Any root query in Contracting.Works is a set of items - even if only a single item is returned.
 
-In order to drill down further in the data set following relations, one should query the relation as part of the root entity as follows:
+To drill down further in the data set following relations, query the relation as part of the root entity as follows:
 
 ```javascript
 query {
@@ -112,7 +112,7 @@ query {
 }
 ```
 
-The "items" node serves a single purpose: to provide a place to get a total count, if the return of paginated data is needed. The total count can be retrieved as follows:
+The "items" node serves a single purpose: to provide a place for a total item count when using [pagination](#pagination). The total count can be retrieved as follows:
 
 ```javascript
 query {
@@ -125,9 +125,9 @@ query {
 }
 ```
 
-Please be aware that getting the total count has a (small) cost on the underlying database query, and should be avoided, if not needed for performance reasons (for example, if you get all records without pagination).
+Please be aware that getting the total count has a (small) cost on the underlying database query. Therefore, it should be avoided if not strictly needed. If all records are returned (unpaginated data), the total count will be the number of returned records.
 
-Queries may take variables as input. This is a useful technique for improving readability and reusability of the queries. A parametrized query looks like follows, using $filter0 and $take0 as variables. Note that the query must specify the types of the input variables.
+Queries may take variables as input. This is a useful technique for improving readability and reusability of queries. Below is a parametrized query, using $filter0 and $take0 as variables. Note that the query must specify the types of the input variables.
 To use the variables, reference them with the full name including the leading dollar sign (which is mandatory).
 
 ```javascript
@@ -178,7 +178,7 @@ query {
 ```
 
 ### Paths
-A *path* originate on the currently filtered object, and may represent any field or direct relations. In general, any field ending with "Id", except for the Id of the current entity itself, can indicate path navigation, if one drops the "Id"-part. For example, an assignment has a field named "addressId", that indicates a single address. This address can be navigated in a path expression. Example:
+A *path* originate on the currently filtered object, and may represent any field or direct relations. In general, any field ending with "Id" except for the Id of the current entity itself indicate that path navigation is possible if dropping the "Id"-part. For example, an assignment has a field named "addressId", that indicates a single address. This address can be navigated in a path expression. Example:
 
 ```javascript
 query {
@@ -192,7 +192,7 @@ query {
 }
 ```
 
-Paths are used bothf for filtering, as in the example above, and for sorting data.
+Paths are used both when filtering, as in the example above, and when sorting data.
 
 
 ### Sorting the results

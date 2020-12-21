@@ -4,7 +4,7 @@
 
 ## Demo credentials
 
-We have gone crazy with trust here, and provide a single test user with password for general demo and testing purposes.
+We've gone crazy with trust here, and provide a single test user with password for general demo and testing purposes.
 
 Note that, once you decide to start serious integration work, you should get a dedicated integration test client (tenant) and a dedicated user for working with it from the Contracting integration team. See [Getting started](Getting%20started.md) for details.
 
