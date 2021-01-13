@@ -20,7 +20,7 @@ The complete read model is available through GraphQL metadata. See [GraphQL Voya
 
 
 ## Main entities
-The list of [aggregate definitions](#aggregate-definitions) provides a complete overview of available aggregates. The main entities and their behavior as seen from an integrated system is described in sub-chapters here. The descriptions are not exhaustive, and are intended to provide an overall understanding of how to interact with the system rather than describing entity details. For details, please refer to the GraphQL metadata and the OpenAPI documentation, together with example projects located on GitHub.
+The list of [aggregate definitions](#aggregate-definitions) provides a complete overview of available aggregates. The main entities and their behavior as seen from an integrated system are described in sub-chapters here. The descriptions are not exhaustive, and are intended to provide an overall understanding of how to interact with the system rather than describing entity details. For details, please refer to the GraphQL metadata and the OpenAPI documentation, together with example projects located on GitHub.
 
 
 ### Settings
@@ -50,9 +50,9 @@ In Contracting.Works, a supplier will serve one or more industry types. Thus, mo
 ## Aggregate definitions
 Aggregates are a concept from Domain Driven Design, as described [here](https://www.martinfowler.com/bliki/DDD_Aggregate.html). For performance reasons, DDD is not used fully in Contracting.Works, but we do use many of the same terms and abstractions for clarity.
 
-In practice, an the address of an assignment does not make sense alone - it is conceptually a part of the assignment and edited together with the assignment. For most kinds of data, Contracting.Works allow manipulation of the datasets independently to allow for a flexible user experience.
+In practice, an address of an assignment does not make sense alone - it is conceptually a part of the assignment and edited together with the assignment. For most kinds of the data, Contracting.Works allows manipulation of the datasets independently to provide a flexible user experience.
 
-The following aggregates are defined in Contracting.Works, where a bullet indicates the aggregate is an aggregate root, while arrows indicate aggregate parts. Certain aggregates are not roots, but are available through their parent roots. An example of this is an **address**, which is part of both the assignment and customer aggregates. Rether than defining the address elements twice, a single definision is reused.
+The following aggregates are defined in Contracting.Works, where a bullet indicates the aggregate is an aggregate root, while arrows indicate aggregate parts. Certain aggregates are not roots, but are available through their parent roots. An example of this is an **address**, which is part of both the assignment and customer aggregates. Rather than defining the address elements twice, a single definition is reused.
 
 
 Address
