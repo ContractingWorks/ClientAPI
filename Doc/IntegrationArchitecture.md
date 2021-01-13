@@ -18,7 +18,7 @@ To query the Contracting Works database we use a GraphQL interface.
 
 #### Write API
 
-The API you use to update and create Contracting Works objects.
+ We use the Write API to update and create Contracting Works objects.
 
 
 
@@ -36,19 +36,19 @@ An Azure ServiceBus is used to send commands to the integration service, either 
 
 ### Synchronization Log
 
-Keeps track of what has been synchronized between the provider and Contracting Works.
+Synchronization log keeps track of what has been synchronized between the provider and Contracting Works.
 
 
 
 ### Integration Configuration Database
 
-A simple dictionary database: Given a Client identifier we lookup the connection string for the provider used by the client.
+Integration configuration database is a simple dictionary database: Given a Client identifier we lookup the connection string for the provider used by the client.
 
 
 
 ### Integration Service
 
-This is the heart or engine that makes the integrations work. It monitors the service bus for updates and reacts to changes.
+Integration service is the heart or engine that makes the integrations work. It monitors the service bus for updates and reacts to changes.
 
 
 
@@ -80,7 +80,7 @@ When we created the invoice in the ERP system it might trigger an event on its s
 
 A provider here is a mapping from the context of CW to the context of another system together with operations.
 
-As a first step we will have three providers hard coded into the system (Visma Net, UniEconomy and Tripletex).
+As a first step we will have three providers hardcoded into the system (Visma Net, UniEconomy and Tripletex).
 
 TODO: The idea is that instead of using in-place assemblies for these providers we should instead publish HTTP endpoints that implement a specific REST interface.
 
