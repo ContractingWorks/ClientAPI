@@ -7,11 +7,11 @@ Contracting Works consists of multiple modules, which can roughly be grouped int
 
 | **Module**                           | **Type**           | **Description**                                              |
 | :----------------------------------- | :----------------- | :----------------------------------------------------------- |
-| Notifications (Webhooks)             | Webhooks           | Webhook service providing aggregate root level change events for all client data changes. |
+| Notifications (Webhooks)             | Webhooks           | Webhook service provides aggregate root level change events for all client data changes. |
 | Admin (UI)                           | Web UI             | User interface for Admin (Back end).                         |
 | Self-service / provisioning          | Web UI             | User interface for onboarding new users / clients, and for administering existing users / clients. Intended for client administrators. |
 | Task orchestrator                    | Azure Function     | Triggers relevant client specific tasks. Relevant client specific bearer token (OAuth) is fetched from Devinco.Connect, and provided to the task runner which performs the actual task. Multiple task orchestrators may exist for different tasks. |
-| Texts                                | WebApi             | Text service, providing language and branch translations (e.g. plumbers and electricians may use different terms for the same concepts - branch specific texts are then provided here) |
+| Texts                                | WebApi             | Text service provides language and branch translations (e.g. plumbers and electricians may use different terms for the same concepts - branch specific texts are then provided here) |
 | Integration engine                   | -                  | Sync engine for all CW integrations owned by the CW integration team + external systems implementing the CW Integration API. Consists of multiple internal parts, including Azure Functions, Azure SQL database and WebApi services. Described separately here: |
 | Service bus                          | Azure ServiceBus   | Standard Azure service bus, providing guaranteed delivery change notifications. Mainly used by integrations and web hooks. Change notifications are grouped on the aggregate root level to prevent event storms during data import, integrations or migrations of data. |
 | Notifications (SignalR)              | SignalR            | SignalR service providing change events for all client data changes. Allows frontend “dirty” flags or notification behavior for handling concurrent users. |
