@@ -15,21 +15,18 @@ The Contracting.Works Client API is based on CQRS (Command Query Resource Segreg
 ## Services and endpoints
 The same GraphQL library and functionality as is used here is in use on several other parts of Contracting.Works, such as services for retrieving translated user interface texts or user settings. In addition to the main GraphQL endpoint, all GraphQL interfaces in Contracting.Works contain several utilities listed below.
 
-### GraphQL Playground
+### GraphQL Banana Cake Pop
 
-GraphQL Playground is an interactive editor for testing out your GraphQL queries, accessible through your web browser.
+Banana Cake Pop is an interactive editor for testing out your GraphQL queries, accessible through your web browser.
 
-Using Playground is straight forward (just try it!). The query editor supports code completion based on the current model. The model is also available in the sidebar navigation containing two tabs (*Docs* and *Schema*). These tabs list all operations available in the API. The Playground allows you to quickly familiarize yourself with the API, perform example operations, and send your first queries.
+Using Banana Cake Pop is straight forward (just try it!). The query editor supports code completion based on the current model. The model is also available in the *Schema Reference*(this tab shows *Type View*, for each type defined) and *Schema Definition*(full schema definition) tabs. These tabs list all operations available in the API. The editor allows you to quickly familiarize yourself with the API, perform example operations, and send your first queries.
 
-[The playground is available here](https://contracting-extest-clientapi-graphql.azurewebsites.net/graphql/playground/)
+[The editor is available here](https://contracting-extest-clientapi-graphql.azurewebsites.net/graphql/ui/)
 
 *_Note: in Contracting.Works, all GraphQL queries must specify the current client (tenant) and also provide a valid bearer token with access to the client._*
 
-- The GraphQL path on the tab in the playground (just beside _History_) needs to be of the following format (replace "a-anonymisert" with your clientId): https://contracting-extest-clientapi-graphql.azurewebsites.net/client/b-dummydata/graphql
-- Under HTTP HEADERS at the bottom of the screen, the following must be specified: {"Authorization":"Bearer _[bearer token value]_"} (see [Getting a valid bearer token](#getting-a-valid-bearer-token) for getting a valid token)
-
-### GraphQL Voyager
-[GraphQL Voyager](https://contracting-extest-clientapi-graphql.azurewebsites.net/graphql/voyager/) is a tool for visualizing GraphQL medatada - the Contracting.Works data model is available here. Note that this is a large model, so the visualization performance may be slow.
+- The GraphQL schema endpoint path (available in Connection Settings - gear button located in the upper right corner) needs to be of the following format (replace "a-anonymisert" with your clientId): https://contracting-extest-clientapi-graphql.azurewebsites.net/client/b-dummydata/graphql
+- Under Authorization Tab next to General, the following must be specified: Type (choose Bearer) and Token (valid bearer token)
 
 ### Swagger API
 While the GraphqQl API is not REST based, all Contracting.Works services also contain a Swagger API. This is useful for operations such as checking permissions, checking service health and getting a valid bearer token for interactive testing purposes (see [Getting a valid bearer token](#getting-a-valid-bearer-token)).
@@ -73,7 +70,7 @@ query {
   }
 }
 ```
-[Try it in GraphQL Playground](https://contracting-extest-clientapi-graphql.azurewebsites.net/graphql/playground/?query=query%20%7B%0A%20%20customers%20%7B%0A%20%20%20%20items%20%7B%0A%20%20%20%20%20%20name%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A)
+[Try it in Banana Cake Pop](https://contracting-extest-clientapi-graphql.azurewebsites.net/graphql/ui/?query=query%20%7B%0A%20%20customers%20%7B%0A%20%20%20%20items%20%7B%0A%20%20%20%20%20%20name%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A)
 
 
 Note that all words are **case sensitive** here, including entity and property names. For sets of entities, the "items" node is mandatory. Any root query in Contracting.Works is a set of items - even if only a single item is returned.
@@ -140,7 +137,7 @@ query($filter0: String, $take0: int) {
 }
 ```
 
-To set the parameter values on a query in GraphQL Playground, a JSON structure must be used under "Query variables" at the bottom of the screen:
+To set the parameter values on a query in Banana Cake Pop, a JSON structure must be used under "Variables" at the bottom of the screen:
 
 ```javascript
 {"take0": 10, "filter0":"customerId!='D2AFDDC5-88A0-5C0C-AF24-001220D51881'"}
