@@ -23,7 +23,7 @@ This repository contains various resources for implementing integration with Con
   - Extensions (filter expressions / paths)
   - Paging
   - Error types and handling
-  - Link to GraphQL playground for externally available test environment 
+  - Link to Banana Cake Pop for externally available test environment 
   - Dealing with authorization & client data access
 - [Reference guide](ReferenceGuide.md)
   - Date handling
