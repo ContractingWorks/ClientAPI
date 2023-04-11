@@ -19,7 +19,7 @@ The same GraphQL library and functionality as is used here is in use on several 
 
 Banana Cake Pop is an interactive editor for testing out your GraphQL queries, accessible through your web browser.
 
-Using Banana Cake Pop is straight forward (just try it!). The query editor supports code completion based on the current model. The model is also available in the *Schema Reference*(this tab shows *Type View*, for each type defined) and *Schema Definition*(full schema definition) tabs. These tabs list all operations available in the API. The Playground allows you to quickly familiarize yourself with the API, perform example operations, and send your first queries.
+Using Banana Cake Pop is straight forward (just try it!). The query editor supports code completion based on the current model. The model is also available in the *Schema Reference*(this tab shows *Type View*, for each type defined) and *Schema Definition*(full schema definition) tabs. These tabs list all operations available in the API. The editor allows you to quickly familiarize yourself with the API, perform example operations, and send your first queries.
 
 [The editor is available here](https://contracting-extest-clientapi-graphql.azurewebsites.net/graphql/ui/)
 
@@ -137,7 +137,7 @@ query($filter0: String, $take0: int) {
 }
 ```
 
-To set the parameter values on a query in GraphQL Playground, a JSON structure must be used under "Query variables" at the bottom of the screen:
+To set the parameter values on a query in Banana Cake Pop, a JSON structure must be used under "Variables" at the bottom of the screen:
 
 ```javascript
 {"take0": 10, "filter0":"customerId!='D2AFDDC5-88A0-5C0C-AF24-001220D51881'"}
