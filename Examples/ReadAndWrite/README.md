@@ -204,6 +204,58 @@ dotnet tool install StrawberryShake.Tools --version 13.4.0
 
 While you can install the GraphQL tool globally, installing it in the repository simplifies build pipelines.
 
+### Filters
+
+The Contracting Works GraphQL API offers considerable flexibility in filtering, resulting in a diverse array of filtering possibilities. While there isn't a definitive list of examples, here are some illustrative scenarios:
+
+#### Paging through rows
+
+To navigate through rows, we often employ the `sys_RowVersion` field to select rows between two distinct versions. When advancing to the next page, the filter's upper and lower limits are adjusted accordingly:
+
+```
+sys_RowVersion > 1000  & sys_RowVersion <= 2000
+```
+
+#### Filtering on child objects
+
+Filtering based on child objects is fully supported. In this context, we can examine child objects like `customer` and `externalSystemAddresses` in the filter:
+
+```
+sys_Historic = false & sys_Incomplete = false & customer.sys_Historic = false & customer.customerId != null & externalSystemAddresses.externalSystemId = 6 & externalSystemAddresses.externalId != null
+```
+
+#### Various Comparison Approaches
+
+When it comes to comparing values in our GraphQL filters, there are several methods at your disposal. Typically, the filter structure follows this pattern: `x.y.z = 1`. This structure comprises a path to the value, a comparison function, and the value for comparison.
+
+We have incorporated common comparison operators, including: `=, !=, <, <=, >, >=`.
+
+Furthermore, we've introduced named comparison functions that exhibit similar behavior to their SQL counterparts: `Contains, NotContains, StartsWith, EndsWith, Like, In, NotIn`.
+
+When you're comparing a value against `null` or `undefined`, it implies that there's no match. The inclusion of `undefined` has been a recent addition, aimed at enhancing the ease of using GraphQL filtering from JavaScript. This adjustment accommodates the likelihood of expressions inadvertently resulting in `undefined`.
+
+#### Complete filtering syntax
+
+For those who find it beneficial, here is the EBNF syntax that outlines the complete filtering structure:
+
+```ebnf
+<expression>    ::= <term> { <or> <term> }
+<term>          ::= <factor> {<and> <factor>}
+<factor>        ::= <predicate> | <not><factor> | (<expression>)
+<or>            ::='|'
+<and>           ::='&'
+<not>           ::='!'
+<predicate>     ::= <path> <operator> <value> | path <function> <functionParam>
+<path>          ::= identifier{.path}
+<functionParam> ::= <value> | <valueList>
+<value>         ::= 'stringvalue' | nonstringvalue
+<valueList>     ::= [<value>{, <value>, ...}]
+```
+
+Supported comparison operators: `=, !=, <, <=, >, >=`
+
+Supported functions: `Contains, NotContains, StartsWith, EndsWith, Like, In, NotIn`
+
 ## NSWAG
 
 We use NSWAG to consume the Contracting Works REST API. Provided here is an example of how it can be used.
