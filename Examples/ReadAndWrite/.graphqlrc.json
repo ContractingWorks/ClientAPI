@@ -1,0 +1,12 @@
+{
+  "schema": "schema.graphql",
+  "documents": "**/*.graphql",
+  "extensions": {
+    "strawberryShake": {
+      "name": "CWGQLClient",
+      "namespace": "ContractingWorks.ReadApi",
+      "url": "https://contracting-extest-clientapi-graphql.azurewebsites.net/client/001-demo-pog/graphql",
+      "dependencyInjection": true
+    }
+  }
+}

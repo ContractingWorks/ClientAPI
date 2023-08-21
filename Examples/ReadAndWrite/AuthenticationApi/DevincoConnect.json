@@ -1,0 +1,454 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Devinco.Connect (3.0.0.2)",
+    "description": "Server build number: <b>20230616.1</b>",
+    "version": "v1"
+  },
+  "paths": {
+    "/Admin/Ping": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "Ping",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Admin/StatusCheck": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "StatusCheck",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Admin/PingAuth": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": " (Auth)",
+        "operationId": "PingAuth",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ]
+      }
+    },
+    "/Admin/IntegrationPingAuth": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": " (Auth policies: IdentityServerAccessToken, Integration)",
+        "operationId": "IntegrationPingAuth",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "Integration",
+              "IdentityServerAccessToken"
+            ]
+          }
+        ]
+      }
+    },
+    "/Token/GenerateAccessTokenAsJson": {
+      "post": {
+        "tags": [
+          "Token"
+        ],
+        "operationId": "GenerateAccessTokenAsJson",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Devinco.Connect.Application.Token.Models.GenerateToken"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Devinco.Connect.Application.Token.Models.GenerateToken"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Devinco.Connect.Application.Token.Models.GenerateToken"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Devinco.Connect.Controllers.AccessTokenItem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Token/GenerateAccessTokenWithLifetimeAsJson": {
+      "post": {
+        "tags": [
+          "Token"
+        ],
+        "summary": " (Auth roles: hostadmin)",
+        "operationId": "GenerateAccessTokenWithLifetimeAsJson",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Devinco.Connect.Application.Token.Models.GenerateTokenWithLifetime"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Devinco.Connect.Application.Token.Models.GenerateTokenWithLifetime"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Devinco.Connect.Application.Token.Models.GenerateTokenWithLifetime"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Devinco.Connect.Controllers.AccessTokenItem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ]
+      }
+    },
+    "/Token/GenerateAccessToken": {
+      "post": {
+        "tags": [
+          "Token"
+        ],
+        "operationId": "GenerateAccessTokenPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Devinco.Connect.Application.Token.Models.GenerateToken"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Devinco.Connect.Application.Token.Models.GenerateToken"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Devinco.Connect.Application.Token.Models.GenerateToken"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Token"
+        ],
+        "operationId": "GenerateAccessTokenGET",
+        "parameters": [
+          {
+            "name": "subjectId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "apiKey",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "clientId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "tenantId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/Token/GenerateAccessTokenFromCache": {
+      "post": {
+        "tags": [
+          "Token"
+        ],
+        "operationId": "GenerateAccessTokenFromCache",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Devinco.Connect.Application.Token.Models.GenerateToken"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Devinco.Connect.Application.Token.Models.GenerateToken"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Devinco.Connect.Application.Token.Models.GenerateToken"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Token/GenerateAccessTokenFromCacheAsJson": {
+      "post": {
+        "tags": [
+          "Token"
+        ],
+        "operationId": "GenerateAccessTokenFromCacheAsJson",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Devinco.Connect.Application.Token.Models.GenerateToken"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Devinco.Connect.Application.Token.Models.GenerateToken"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Devinco.Connect.Application.Token.Models.GenerateToken"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Devinco.Connect.Controllers.AccessTokenItem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Token/CheckAccessToken": {
+      "post": {
+        "tags": [
+          "Token"
+        ],
+        "operationId": "CheckAccessToken",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Devinco.Connect.Controllers.AccessTokenInput"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Devinco.Connect.Controllers.AccessTokenInput"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Devinco.Connect.Controllers.AccessTokenInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Devinco.Connect.Controllers.AccessTokenValidity"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Devinco.Connect.Application.Token.Models.GenerateToken": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "subjectId": {
+            "type": "string",
+            "nullable": true
+          },
+          "apiKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "clientId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tenantId": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "Devinco.Connect.Application.Token.Models.GenerateTokenWithLifetime": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "subjectId": {
+            "type": "string",
+            "nullable": true
+          },
+          "apiKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "clientId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tenantId": {
+            "type": "string",
+            "nullable": true
+          },
+          "tokenLifetime": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "Devinco.Connect.Controllers.AccessTokenInput": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "accessToken": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "Devinco.Connect.Controllers.AccessTokenItem": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "accessToken": {
+            "type": "string",
+            "nullable": true
+          },
+          "validFromUTC": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "validToUTC": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Devinco.Connect.Controllers.AccessTokenValidity": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "isValid": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "oauth2": {
+        "type": "oauth2",
+        "description": "Authentication using OAuth2 \"bearer {token}\"",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://connect-extest.devinco.com/connect/authorize",
+            "tokenUrl": "https://connect-extest.devinco.com/connect/token",
+            "scopes": {
+              "contracting:api": "Scope Contracting",
+              "speedycraft:api": "Scope SpeedyCraft",
+              "license:api": "Scope Licensing",
+              "mesh_network:api": "Scope Mesh Network"
+            }
+          }
+        }
+      }
+    }
+  }
+}
