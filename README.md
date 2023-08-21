@@ -16,7 +16,7 @@ To get started quickly with integrations, we have created a [simple getting star
 
 ## Read & Write sample app
 
-See the [Read & Write sample app](Examples/ReadAndWrite/README.md) on how to read data from Contracting Works using GraphQL and update it using REST.i
+See the [Read & Write sample app](Examples/ReadAndWrite/) on how to read data from Contracting Works using GraphQL and update it using REST.i
 
 ## Documentation
 
