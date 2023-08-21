@@ -14,6 +14,10 @@ The APIs can be tested on dummy data using standardized credentials using Banana
 
 To get started quickly with integrations, we have created a [simple getting started guide](Getting%20started.md).
 
+## Read & Write sample app
+
+See the [Read & Write sample app](Examples/ReadAndWrite/README.md) on how to read data from Contracting Works using GraphQL and update it using REST.i
+
 ## Documentation
 
 Documentation is located in the [Doc subfolder](Doc).

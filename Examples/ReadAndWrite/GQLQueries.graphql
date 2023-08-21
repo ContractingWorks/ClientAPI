@@ -1,0 +1,35 @@
+query GetCustomer($top: Int!, $filter: String!) {
+  customers(
+    top: $top
+    filter: $filter
+    orderBy: { path: "sys_RowVersion", descending: false }
+  ) {
+    items {
+      customerId
+      customerNumber
+      name
+      email
+      paymentTerm {
+        paymentTermId
+        days
+        daysStartNextMonth
+        description
+      }
+    }
+  }
+}
+
+query GetPaymentTerm($top: Int!, $filter: String!) {
+  paymentTerms(
+    top: $top
+    filter: $filter
+    orderBy: { path: "sys_RowVersion", descending: false }
+  ) {
+    items {
+      paymentTermId
+      days
+      daysStartNextMonth
+      description
+    }
+  }
+}
