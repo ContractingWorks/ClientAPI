@@ -62,11 +62,10 @@ You can run the example from Visual Studio or the terminal using the following c
 dotnet run
 ```
 
-With some luck, the sample program will:
+With some luck, the sample program will perform the following:
 
-1. Authenticate successfully using Devinco Connect.
-2. Read 10 Payment Terms and 10 Customers from Contracting Works using the GraphQL API.
-3. Update Payment Terms of the 10 Customers received using the REST API.
+1. Successfully authenticate using Devinco Connect.
+2. Retrieve 10 Payment Terms and 10 Customers from Contracting Works using the GraphQL API.
+3. Modify the Payment Terms of the received 10 Customers through the REST API.
 
-If you want to learn more details on how to update your queries, work with [Strawberry Shake](https://chillicream.com/docs/strawberryshake/) and [NSwag](https://github.com/RicoSuter/NSwag) see [DETAILED.md](DETAILED.md).
-
+For further insights into refining your queries, working with [Strawberry Shake](https://chillicream.com/docs/strawberryshake/) and [NSwag](https://github.com/RicoSuter/NSwag), refer to the [DETAILED.md](DETAILED.md) guide.
