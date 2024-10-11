@@ -3,7 +3,12 @@
 
 namespace ContractingWorks.ReadApi
 {
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    /// <summary>
+    /// If the argument externalSystemId (Int) is provided to the root query entity, it will be implicitly used to resolve any ext_ fields in the query.
+    /// Note that if the variable is omitted, if ExternalSystemID is configured on the user performing the query this value will be used.
+    /// Integration service users should normally have ExternalSystemID configured.
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial class GetCustomerResult : global::System.IEquatable<GetCustomerResult>, IGetCustomerResult
     {
         public GetCustomerResult(global::ContractingWorks.ReadApi.IGetCustomer_Customers? customers)
@@ -68,7 +73,7 @@ namespace ContractingWorks.ReadApi
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial class GetCustomer_Customers_CustomerSet : global::System.IEquatable<GetCustomer_Customers_CustomerSet>, IGetCustomer_Customers_CustomerSet
     {
         public GetCustomer_Customers_CustomerSet(global::System.Collections.Generic.IReadOnlyList<global::ContractingWorks.ReadApi.IGetCustomer_Customers_Items>? items)
@@ -139,7 +144,7 @@ namespace ContractingWorks.ReadApi
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial class GetCustomer_Customers_Items_Customer : global::System.IEquatable<GetCustomer_Customers_Items_Customer>, IGetCustomer_Customers_Items_Customer
     {
         public GetCustomer_Customers_Items_Customer(global::System.Int32 customerId, global::System.Int32? customerNumber, global::System.String? name, global::System.String? email, global::ContractingWorks.ReadApi.IGetCustomer_Customers_Items_PaymentTerm? paymentTerm)
@@ -178,7 +183,7 @@ namespace ContractingWorks.ReadApi
                 return false;
             }
 
-            return (CustomerId == other.CustomerId) && CustomerNumber == other.CustomerNumber && ((Name is null && other.Name is null) || Name != null && Name.Equals(other.Name)) && ((Email is null && other.Email is null) || Email != null && Email.Equals(other.Email)) && ((PaymentTerm is null && other.PaymentTerm is null) || PaymentTerm != null && PaymentTerm.Equals(other.PaymentTerm));
+            return (global::System.Object.Equals(CustomerId, other.CustomerId)) && global::System.Object.Equals(CustomerNumber, other.CustomerNumber) && ((Name is null && other.Name is null) || Name != null && Name.Equals(other.Name)) && ((Email is null && other.Email is null) || Email != null && Email.Equals(other.Email)) && ((PaymentTerm is null && other.PaymentTerm is null) || PaymentTerm != null && PaymentTerm.Equals(other.PaymentTerm));
         }
 
         public override global::System.Boolean Equals(global::System.Object? obj)
@@ -232,7 +237,7 @@ namespace ContractingWorks.ReadApi
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial class GetCustomer_Customers_Items_PaymentTerm_PaymentTerm : global::System.IEquatable<GetCustomer_Customers_Items_PaymentTerm_PaymentTerm>, IGetCustomer_Customers_Items_PaymentTerm_PaymentTerm
     {
         public GetCustomer_Customers_Items_PaymentTerm_PaymentTerm(global::System.Int16 paymentTermId, global::System.Int16 days, global::System.Boolean daysStartNextMonth, global::System.String description)
@@ -268,7 +273,7 @@ namespace ContractingWorks.ReadApi
                 return false;
             }
 
-            return (PaymentTermId == other.PaymentTermId) && Days == other.Days && DaysStartNextMonth == other.DaysStartNextMonth && Description.Equals(other.Description);
+            return (global::System.Object.Equals(PaymentTermId, other.PaymentTermId)) && global::System.Object.Equals(Days, other.Days) && global::System.Object.Equals(DaysStartNextMonth, other.DaysStartNextMonth) && Description.Equals(other.Description);
         }
 
         public override global::System.Boolean Equals(global::System.Object? obj)
@@ -305,13 +310,18 @@ namespace ContractingWorks.ReadApi
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    /// <summary>
+    /// If the argument externalSystemId (Int) is provided to the root query entity, it will be implicitly used to resolve any ext_ fields in the query.
+    /// Note that if the variable is omitted, if ExternalSystemID is configured on the user performing the query this value will be used.
+    /// Integration service users should normally have ExternalSystemID configured.
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial interface IGetCustomerResult
     {
         public global::ContractingWorks.ReadApi.IGetCustomer_Customers? Customers { get; }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial interface IGetCustomer_Customers
     {
         /// <summary>
@@ -320,12 +330,12 @@ namespace ContractingWorks.ReadApi
         public global::System.Collections.Generic.IReadOnlyList<global::ContractingWorks.ReadApi.IGetCustomer_Customers_Items>? Items { get; }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial interface IGetCustomer_Customers_CustomerSet : IGetCustomer_Customers
     {
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial interface IGetCustomer_Customers_Items
     {
         public global::System.Int32 CustomerId { get; }
@@ -339,12 +349,12 @@ namespace ContractingWorks.ReadApi
         public global::ContractingWorks.ReadApi.IGetCustomer_Customers_Items_PaymentTerm? PaymentTerm { get; }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial interface IGetCustomer_Customers_Items_Customer : IGetCustomer_Customers_Items
     {
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial interface IGetCustomer_Customers_Items_PaymentTerm
     {
         public global::System.Int16 PaymentTermId { get; }
@@ -356,12 +366,17 @@ namespace ContractingWorks.ReadApi
         public global::System.String Description { get; }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial interface IGetCustomer_Customers_Items_PaymentTerm_PaymentTerm : IGetCustomer_Customers_Items_PaymentTerm
     {
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    /// <summary>
+    /// If the argument externalSystemId (Int) is provided to the root query entity, it will be implicitly used to resolve any ext_ fields in the query.
+    /// Note that if the variable is omitted, if ExternalSystemID is configured on the user performing the query this value will be used.
+    /// Integration service users should normally have ExternalSystemID configured.
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial class GetPaymentTermResult : global::System.IEquatable<GetPaymentTermResult>, IGetPaymentTermResult
     {
         public GetPaymentTermResult(global::ContractingWorks.ReadApi.IGetPaymentTerm_PaymentTerms? paymentTerms)
@@ -426,7 +441,7 @@ namespace ContractingWorks.ReadApi
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial class GetPaymentTerm_PaymentTerms_PaymentTermSet : global::System.IEquatable<GetPaymentTerm_PaymentTerms_PaymentTermSet>, IGetPaymentTerm_PaymentTerms_PaymentTermSet
     {
         public GetPaymentTerm_PaymentTerms_PaymentTermSet(global::System.Collections.Generic.IReadOnlyList<global::ContractingWorks.ReadApi.IGetPaymentTerm_PaymentTerms_Items>? items)
@@ -497,7 +512,7 @@ namespace ContractingWorks.ReadApi
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial class GetPaymentTerm_PaymentTerms_Items_PaymentTerm : global::System.IEquatable<GetPaymentTerm_PaymentTerms_Items_PaymentTerm>, IGetPaymentTerm_PaymentTerms_Items_PaymentTerm
     {
         public GetPaymentTerm_PaymentTerms_Items_PaymentTerm(global::System.Int16 paymentTermId, global::System.Int16 days, global::System.Boolean daysStartNextMonth, global::System.String description)
@@ -533,7 +548,7 @@ namespace ContractingWorks.ReadApi
                 return false;
             }
 
-            return (PaymentTermId == other.PaymentTermId) && Days == other.Days && DaysStartNextMonth == other.DaysStartNextMonth && Description.Equals(other.Description);
+            return (global::System.Object.Equals(PaymentTermId, other.PaymentTermId)) && global::System.Object.Equals(Days, other.Days) && global::System.Object.Equals(DaysStartNextMonth, other.DaysStartNextMonth) && Description.Equals(other.Description);
         }
 
         public override global::System.Boolean Equals(global::System.Object? obj)
@@ -570,13 +585,18 @@ namespace ContractingWorks.ReadApi
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    /// <summary>
+    /// If the argument externalSystemId (Int) is provided to the root query entity, it will be implicitly used to resolve any ext_ fields in the query.
+    /// Note that if the variable is omitted, if ExternalSystemID is configured on the user performing the query this value will be used.
+    /// Integration service users should normally have ExternalSystemID configured.
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial interface IGetPaymentTermResult
     {
         public global::ContractingWorks.ReadApi.IGetPaymentTerm_PaymentTerms? PaymentTerms { get; }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial interface IGetPaymentTerm_PaymentTerms
     {
         /// <summary>
@@ -585,12 +605,12 @@ namespace ContractingWorks.ReadApi
         public global::System.Collections.Generic.IReadOnlyList<global::ContractingWorks.ReadApi.IGetPaymentTerm_PaymentTerms_Items>? Items { get; }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial interface IGetPaymentTerm_PaymentTerms_PaymentTermSet : IGetPaymentTerm_PaymentTerms
     {
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial interface IGetPaymentTerm_PaymentTerms_Items
     {
         public global::System.Int16 PaymentTermId { get; }
@@ -602,7 +622,7 @@ namespace ContractingWorks.ReadApi
         public global::System.String Description { get; }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial interface IGetPaymentTerm_PaymentTerms_Items_PaymentTerm : IGetPaymentTerm_PaymentTerms_Items
     {
     }
@@ -631,7 +651,7 @@ namespace ContractingWorks.ReadApi
     /// }
     /// </code>
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial class GetCustomerQueryDocument : global::StrawberryShake.IDocument
     {
         private GetCustomerQueryDocument()
@@ -676,7 +696,7 @@ namespace ContractingWorks.ReadApi
     /// }
     /// </code>
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial class GetCustomerQuery : global::ContractingWorks.ReadApi.IGetCustomerQuery
     {
         private readonly global::StrawberryShake.IOperationExecutor<IGetCustomerResult> _operationExecutor;
@@ -760,7 +780,7 @@ namespace ContractingWorks.ReadApi
     /// }
     /// </code>
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial interface IGetCustomerQuery : global::StrawberryShake.IOperationRequestFactory
     {
         global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<IGetCustomerResult>> ExecuteAsync(global::System.Int32 top, global::System.String filter, global::System.Threading.CancellationToken cancellationToken = default);
@@ -784,7 +804,7 @@ namespace ContractingWorks.ReadApi
     /// }
     /// </code>
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial class GetPaymentTermQueryDocument : global::StrawberryShake.IDocument
     {
         private GetPaymentTermQueryDocument()
@@ -822,7 +842,7 @@ namespace ContractingWorks.ReadApi
     /// }
     /// </code>
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial class GetPaymentTermQuery : global::ContractingWorks.ReadApi.IGetPaymentTermQuery
     {
         private readonly global::StrawberryShake.IOperationExecutor<IGetPaymentTermResult> _operationExecutor;
@@ -899,7 +919,7 @@ namespace ContractingWorks.ReadApi
     /// }
     /// </code>
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial interface IGetPaymentTermQuery : global::StrawberryShake.IOperationRequestFactory
     {
         global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<IGetPaymentTermResult>> ExecuteAsync(global::System.Int32 top, global::System.String filter, global::System.Threading.CancellationToken cancellationToken = default);
@@ -909,7 +929,7 @@ namespace ContractingWorks.ReadApi
     /// <summary>
     /// Represents the CWGQLClient GraphQL client
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial class CWGQLClient : global::ContractingWorks.ReadApi.ICWGQLClient
     {
         private readonly global::ContractingWorks.ReadApi.IGetCustomerQuery _getCustomer;
@@ -928,7 +948,7 @@ namespace ContractingWorks.ReadApi
     /// <summary>
     /// Represents the CWGQLClient GraphQL client
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial interface ICWGQLClient
     {
         global::ContractingWorks.ReadApi.IGetCustomerQuery GetCustomer { get; }
@@ -939,7 +959,7 @@ namespace ContractingWorks.ReadApi
 
 namespace ContractingWorks.ReadApi.State
 {
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial class GetCustomerResultFactory : global::StrawberryShake.IOperationResultDataFactory<global::ContractingWorks.ReadApi.GetCustomerResult>
     {
         private readonly global::StrawberryShake.IEntityStore _entityStore;
@@ -1041,7 +1061,7 @@ namespace ContractingWorks.ReadApi.State
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial class GetCustomerResultInfo : global::StrawberryShake.IOperationResultDataInfo
     {
         private readonly global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> _entityIds;
@@ -1063,7 +1083,7 @@ namespace ContractingWorks.ReadApi.State
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial class GetPaymentTermResultFactory : global::StrawberryShake.IOperationResultDataFactory<global::ContractingWorks.ReadApi.GetPaymentTermResult>
     {
         private readonly global::StrawberryShake.IEntityStore _entityStore;
@@ -1145,7 +1165,7 @@ namespace ContractingWorks.ReadApi.State
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial class GetPaymentTermResultInfo : global::StrawberryShake.IOperationResultDataInfo
     {
         private readonly global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> _entityIds;
@@ -1167,7 +1187,7 @@ namespace ContractingWorks.ReadApi.State
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial class GetCustomerBuilder : global::StrawberryShake.OperationResultBuilder<global::ContractingWorks.ReadApi.IGetCustomerResult>
     {
         private readonly global::StrawberryShake.IEntityStore _entityStore;
@@ -1207,6 +1227,11 @@ namespace ContractingWorks.ReadApi.State
                 return null;
             }
 
+            if (obj.Value.ValueKind == System.Text.Json.JsonValueKind.Null)
+            {
+                return null;
+            }
+
             var typename = obj.Value.GetProperty("__typename").GetString();
             if (typename?.Equals("CustomerSet", global::System.StringComparison.Ordinal) ?? false)
             {
@@ -1219,6 +1244,11 @@ namespace ContractingWorks.ReadApi.State
         private global::System.Collections.Generic.IReadOnlyList<global::ContractingWorks.ReadApi.State.CustomerData>? Deserialize_IGetCustomer_Customers_ItemsNonNullableArray(global::System.Text.Json.JsonElement? obj)
         {
             if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            if (obj.Value.ValueKind == System.Text.Json.JsonValueKind.Null)
             {
                 return null;
             }
@@ -1239,6 +1269,11 @@ namespace ContractingWorks.ReadApi.State
                 throw new global::System.ArgumentNullException();
             }
 
+            if (obj.Value.ValueKind == System.Text.Json.JsonValueKind.Null)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
             var typename = obj.Value.GetProperty("__typename").GetString();
             if (typename?.Equals("Customer", global::System.StringComparison.Ordinal) ?? false)
             {
@@ -1255,12 +1290,22 @@ namespace ContractingWorks.ReadApi.State
                 throw new global::System.ArgumentNullException();
             }
 
+            if (obj.Value.ValueKind == System.Text.Json.JsonValueKind.Null)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
             return _intParser.Parse(obj.Value.GetInt32()!);
         }
 
         private global::System.Int32? Deserialize_Int32(global::System.Text.Json.JsonElement? obj)
         {
             if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            if (obj.Value.ValueKind == System.Text.Json.JsonValueKind.Null)
             {
                 return null;
             }
@@ -1275,12 +1320,22 @@ namespace ContractingWorks.ReadApi.State
                 return null;
             }
 
+            if (obj.Value.ValueKind == System.Text.Json.JsonValueKind.Null)
+            {
+                return null;
+            }
+
             return _stringParser.Parse(obj.Value.GetString()!);
         }
 
         private global::ContractingWorks.ReadApi.State.PaymentTermData? Deserialize_IGetCustomer_Customers_Items_PaymentTerm(global::System.Text.Json.JsonElement? obj)
         {
             if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            if (obj.Value.ValueKind == System.Text.Json.JsonValueKind.Null)
             {
                 return null;
             }
@@ -1301,12 +1356,22 @@ namespace ContractingWorks.ReadApi.State
                 throw new global::System.ArgumentNullException();
             }
 
+            if (obj.Value.ValueKind == System.Text.Json.JsonValueKind.Null)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
             return _shortParser.Parse(obj.Value.GetInt16()!);
         }
 
         private global::System.Boolean Deserialize_NonNullableBoolean(global::System.Text.Json.JsonElement? obj)
         {
             if (!obj.HasValue)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            if (obj.Value.ValueKind == System.Text.Json.JsonValueKind.Null)
             {
                 throw new global::System.ArgumentNullException();
             }
@@ -1321,11 +1386,16 @@ namespace ContractingWorks.ReadApi.State
                 throw new global::System.ArgumentNullException();
             }
 
+            if (obj.Value.ValueKind == System.Text.Json.JsonValueKind.Null)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
             return _stringParser.Parse(obj.Value.GetString()!);
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial class GetPaymentTermBuilder : global::StrawberryShake.OperationResultBuilder<global::ContractingWorks.ReadApi.IGetPaymentTermResult>
     {
         private readonly global::StrawberryShake.IEntityStore _entityStore;
@@ -1365,6 +1435,11 @@ namespace ContractingWorks.ReadApi.State
                 return null;
             }
 
+            if (obj.Value.ValueKind == System.Text.Json.JsonValueKind.Null)
+            {
+                return null;
+            }
+
             var typename = obj.Value.GetProperty("__typename").GetString();
             if (typename?.Equals("PaymentTermSet", global::System.StringComparison.Ordinal) ?? false)
             {
@@ -1377,6 +1452,11 @@ namespace ContractingWorks.ReadApi.State
         private global::System.Collections.Generic.IReadOnlyList<global::ContractingWorks.ReadApi.State.PaymentTermData>? Deserialize_IGetPaymentTerm_PaymentTerms_ItemsNonNullableArray(global::System.Text.Json.JsonElement? obj)
         {
             if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            if (obj.Value.ValueKind == System.Text.Json.JsonValueKind.Null)
             {
                 return null;
             }
@@ -1397,6 +1477,11 @@ namespace ContractingWorks.ReadApi.State
                 throw new global::System.ArgumentNullException();
             }
 
+            if (obj.Value.ValueKind == System.Text.Json.JsonValueKind.Null)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
             var typename = obj.Value.GetProperty("__typename").GetString();
             if (typename?.Equals("PaymentTerm", global::System.StringComparison.Ordinal) ?? false)
             {
@@ -1413,12 +1498,22 @@ namespace ContractingWorks.ReadApi.State
                 throw new global::System.ArgumentNullException();
             }
 
+            if (obj.Value.ValueKind == System.Text.Json.JsonValueKind.Null)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
             return _shortParser.Parse(obj.Value.GetInt16()!);
         }
 
         private global::System.Boolean Deserialize_NonNullableBoolean(global::System.Text.Json.JsonElement? obj)
         {
             if (!obj.HasValue)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            if (obj.Value.ValueKind == System.Text.Json.JsonValueKind.Null)
             {
                 throw new global::System.ArgumentNullException();
             }
@@ -1433,11 +1528,16 @@ namespace ContractingWorks.ReadApi.State
                 throw new global::System.ArgumentNullException();
             }
 
+            if (obj.Value.ValueKind == System.Text.Json.JsonValueKind.Null)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
             return _stringParser.Parse(obj.Value.GetString()!);
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial class CustomerSetData
     {
         public CustomerSetData(global::System.String __typename, global::System.Collections.Generic.IReadOnlyList<global::ContractingWorks.ReadApi.State.CustomerData>? items = default !)
@@ -1452,7 +1552,7 @@ namespace ContractingWorks.ReadApi.State
         public global::System.Collections.Generic.IReadOnlyList<global::ContractingWorks.ReadApi.State.CustomerData>? Items { get; }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial class CustomerData
     {
         public CustomerData(global::System.String __typename, global::System.Int32? customerId = default !, global::System.Int32? customerNumber = default !, global::System.String? name = default !, global::System.String? email = default !, global::ContractingWorks.ReadApi.State.PaymentTermData? paymentTerm = default !)
@@ -1478,7 +1578,7 @@ namespace ContractingWorks.ReadApi.State
         public global::ContractingWorks.ReadApi.State.PaymentTermData? PaymentTerm { get; }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial class PaymentTermData
     {
         public PaymentTermData(global::System.String __typename, global::System.Int16? paymentTermId = default !, global::System.Int16? days = default !, global::System.Boolean? daysStartNextMonth = default !, global::System.String? description = default !)
@@ -1501,7 +1601,7 @@ namespace ContractingWorks.ReadApi.State
         public global::System.String? Description { get; }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial class PaymentTermSetData
     {
         public PaymentTermSetData(global::System.String __typename, global::System.Collections.Generic.IReadOnlyList<global::ContractingWorks.ReadApi.State.PaymentTermData>? items = default !)
@@ -1516,7 +1616,7 @@ namespace ContractingWorks.ReadApi.State
         public global::System.Collections.Generic.IReadOnlyList<global::ContractingWorks.ReadApi.State.PaymentTermData>? Items { get; }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial class CWGQLClientEntityIdFactory : global::StrawberryShake.IEntityIdSerializer
     {
         private static readonly global::System.Text.Json.JsonWriterOptions _options = new global::System.Text.Json.JsonWriterOptions()
@@ -1537,7 +1637,7 @@ namespace ContractingWorks.ReadApi.State
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public partial class CWGQLClientStoreAccessor : global::StrawberryShake.StoreAccessor
     {
         public CWGQLClientStoreAccessor(global::StrawberryShake.IOperationStore operationStore, global::StrawberryShake.IEntityStore entityStore, global::StrawberryShake.IEntityIdSerializer entityIdSerializer, global::System.Collections.Generic.IEnumerable<global::StrawberryShake.IOperationRequestFactory> requestFactories, global::System.Collections.Generic.IEnumerable<global::StrawberryShake.IOperationResultDataFactory> resultDataFactories) : base(operationStore, entityStore, entityIdSerializer, requestFactories, resultDataFactories)
@@ -1548,7 +1648,7 @@ namespace ContractingWorks.ReadApi.State
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "13.9.14.0")]
     public static partial class CWGQLClientServiceCollectionExtensions
     {
         public static global::StrawberryShake.IClientBuilder<global::ContractingWorks.ReadApi.State.CWGQLClientStoreAccessor> AddCWGQLClient(this global::Microsoft.Extensions.DependencyInjection.IServiceCollection services, global::StrawberryShake.ExecutionStrategy strategy = global::StrawberryShake.ExecutionStrategy.NetworkOnly)
