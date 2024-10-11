@@ -1,7 +1,5 @@
 # Contracting.Works integrations
 
-***Under heavy construction***
-
 Documentation and examples for using the Contracting.Works APIs
 
 ## Demo

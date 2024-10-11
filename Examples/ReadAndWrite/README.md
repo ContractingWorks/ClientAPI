@@ -69,3 +69,17 @@ With some luck, the sample program will perform the following:
 3. Modify the Payment Terms of the received 10 Customers through the REST API.
 
 For further insights into refining your queries, working with [Strawberry Shake](https://chillicream.com/docs/strawberryshake/) and [NSwag](https://github.com/RicoSuter/NSwag), refer to the [DETAILED.md](DETAILED.md) guide.
+
+## Deploying to production
+
+The example is setup towards the extest hosts:
+
+1. Devinco Connect (Authentication): connect-extest.devinco.com
+2. REST API (Update): contracting-extest-clientapi.azurewebsites.net
+3. GraphQL API (Query): contracting-extest-clientapi-graphql.azurewebsites.net
+
+When you deploy to the production enviroment you will need to use the production hosts:
+
+1. Devinco Connect (Authentication): connect.devinco.com
+2. REST API (Update): contracting-prod-clientapi.contracting.works
+3. GraphQL API (Query): contracting-prod-clientapi-graphql.contracting.works
