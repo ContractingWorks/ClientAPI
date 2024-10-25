@@ -11,4 +11,4 @@ Note that, once you decide to start serious integration work, you should get a d
 
 ## Reading and writing data
 
-See [ReadAndWrite example](ReadAndWrite/README.md)
+See [ReadAndWrite example](Examples/ReadAndWrite/README.md)
