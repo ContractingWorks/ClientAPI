@@ -6,7 +6,7 @@ ClientAPI provides webhook support to notify external systems about events occur
 
 ## Administration
 
-Webhook administration involves managing webhook subscriptions via the `WebhooksController`. The following API endpoints are available:
+Webhook administration involves managing webhook subscriptions via the `Webhooks` endpoint. The following API endpoints are available:
 
 *   `GET v3/client/{clientid}/webhooks/webhooks`: Returns metadata about available Webhooks. This endpoint provides a list of available webhook event types that you can subscribe to.
 *   `GET v3/client/{clientid}/webhooks/subscriptions?integratorIdText={integratorIdText}`: Returns the webhook subscriptions for a given integrator.
@@ -95,3 +95,4 @@ Available webhook events and their corresponding `WebhookId` values can be retri
 - Only enabled subscriptions receive webhook deliveries
 - Only subscriptions with `Enabled = true` receive webhook deliveries
 - Webhook URLs are re-validated at delivery time and invalid URLs are skipped
+
