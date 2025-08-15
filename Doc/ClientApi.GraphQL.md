@@ -447,25 +447,36 @@ Invoke-WebRequest -Uri "https://contracting-extest-clientapi-graphql.azurewebsit
 Our development language of choice; a typed superset of JavaScript that compiles to plain JavaScript. Here’s an example of how you can use it to query our GraphQL demo endpoint:
 
 ```typescript
-         ---nee to be updated
-     function callTestEndpoint():void {
-        var request = new XMLHttpRequest();
-
-        request.open('POST', "https://contracting-extest-clientapi-graphql.azurewebsites.net/client/d4a668d1-d5fa-4aff-91f2-a9615281efa7/graphql", true);
-        var data = {"query":"{sage {emSales { salesOrder (first: 5, orderBy: \"{ id: 1 }\") {  edges { node { id, soldToCustomer {companyName } } } } } } }","variable":""};
-
-        request.setRequestHeader("content-type", "application/json");
-        request.send(JSON.stringify(data));
-        request.onreadystatechange = function () {
-
-            if (request.readyState == 4 && (request.status == 200 || request.status == 0)) {
-                // If no error
-                var result = JSON.parse(request.responseText);
-            } else if (request.readyState == 4) {
-                // If error occurred
+async function callTestEndpoint(): Promise<any> {
+    const response = await fetch("https://contracting-extest-clientapi-graphql.azurewebsites.net/client/d4a668d1-d5fa-4aff-91f2-a9615281efa7/graphql", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer XXX' // Replace with a valid token
+        },
+        body: JSON.stringify({
+            query: `
+                query ($filter0: String) {
+                    employees(filter: $filter0) {
+                        items { employeeId, lastName, firstName, dateOfBirth }
+                    }
+                }`,
+            variables: {
+                filter0: "sys_Deactivated = false"
             }
-        };
+        })
+    });
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
     }
+
+    return await response.json();
+}
+
+callTestEndpoint()
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:', error));
 ```
 
 ### JavaScript
@@ -473,25 +484,36 @@ Our development language of choice; a typed superset of JavaScript that compiles
 A slight difference to our TypeScript example (see above), but we did it anyway.
 
 ```javascript
-        ---nee to be updated
-    function callTestEndpoint() {
-        var request = new XMLHttpRequest();
-
-        request.open('POST', "https://contracting-extest-clientapi-graphql.azurewebsites.net/client/d4a668d1-d5fa-4aff-91f2-a9615281efa7/graphql", true);
-        var data = {"query":"{sage {emSales { salesOrder (first: 5, orderBy: \"{ id: 1 }\") {  edges { node { id, soldToCustomer {companyName } } } } } } }","variable":""};
-
-        request.setRequestHeader("content-type", "application/json");
-        request.send(JSON.stringify(data));
-        request.onreadystatechange = function () {
-
-            if (request.readyState == 4 && (request.status == 200 || request.status == 0)) {
-                // If no error
-                var result = JSON.parse(request.responseText);
-            } else if (request.readyState == 4) {
-                // If error occurred
+async function callTestEndpoint() {
+    const response = await fetch("https://contracting-extest-clientapi-graphql.azurewebsites.net/client/d4a668d1-d5fa-4aff-91f2-a9615281efa7/graphql", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer XXX' // Replace with a valid token
+        },
+        body: JSON.stringify({
+            query: `
+                query ($filter0: String) {
+                    employees(filter: $filter0) {
+                        items { employeeId, lastName, firstName, dateOfBirth }
+                    }
+                }`,
+            variables: {
+                filter0: "sys_Deactivated = false"
             }
-        };
+        })
+    });
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
     }
+
+    const data = await response.json();
+    console.log(data);
+    return data;
+}
+
+callTestEndpoint().catch(error => console.error('Error:', error));
 ```
 
 
